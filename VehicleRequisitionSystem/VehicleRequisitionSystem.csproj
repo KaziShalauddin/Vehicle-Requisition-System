@@ -174,6 +174,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DBContext\VehicleRequisitionDBContext.cs" />
+    <Compile Include="Models\EntityModels\AssignedRequisition.cs" />
+    <Compile Include="Models\EntityModels\Driver.cs" />
+    <Compile Include="Models\EntityModels\Employee.cs" />
+    <Compile Include="Models\EntityModels\RequisitionRequest.cs" />
+    <Compile Include="Models\EntityModels\Vehicle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +194,35 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Website_Design\css\freelancer.css" />
+    <Content Include="Website_Design\css\freelancer.min.css" />
+    <Content Include="Website_Design\gulpfile.js" />
+    <Content Include="Website_Design\img\iPiccy-Design.png" />
+    <Content Include="Website_Design\img\portfolio\cabin.png" />
+    <Content Include="Website_Design\img\portfolio\cake.png" />
+    <Content Include="Website_Design\img\portfolio\circus.png" />
+    <Content Include="Website_Design\img\portfolio\game.png" />
+    <Content Include="Website_Design\img\portfolio\safe.png" />
+    <Content Include="Website_Design\img\portfolio\submarine.png" />
+    <Content Include="Website_Design\img\profile-c.png" />
+    <Content Include="Website_Design\img\profile-s.png" />
+    <Content Include="Website_Design\img\profile.png" />
+    <Content Include="Website_Design\img\Untitled.png" />
+    <Content Include="Website_Design\index.html" />
+    <Content Include="Website_Design\js\contact_me.js" />
+    <Content Include="Website_Design\js\freelancer.js" />
+    <Content Include="Website_Design\js\freelancer.min.js" />
+    <Content Include="Website_Design\js\jqBootstrapValidation.js" />
+    <Content Include="Website_Design\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Website_Design\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Website_Design\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Website_Design\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Website_Design\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Website_Design\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Website_Design\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Website_Design\vendor\jquery\jquery.js" />
+    <Content Include="Website_Design\vendor\jquery\jquery.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -200,7 +235,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -234,6 +271,48 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Website_Design\package.json" />
+    <Content Include="Website_Design\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Website_Design\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Website_Design\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Website_Design\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Website_Design\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Website_Design\vendor\font-awesome\less\animated.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\core.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\fixed-width.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\font-awesome.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\icons.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\larger.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\list.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\mixins.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\path.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\screen-reader.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\stacked.less" />
+    <Content Include="Website_Design\vendor\font-awesome\less\variables.less" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_animated.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_core.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_icons.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_larger.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_list.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_mixins.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_path.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_stacked.scss" />
+    <Content Include="Website_Design\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Website_Design\less\freelancer.less" />
+    <Content Include="Website_Design\less\mixins.less" />
+    <Content Include="Website_Design\less\variables.less" />
+    <Content Include="Website_Design\mail\contact_me.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
