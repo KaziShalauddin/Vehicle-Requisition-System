@@ -9,6 +9,12 @@ namespace VehicleRequisitionSystem.Models.DBContext
 {
     public class VehicleRequisitionDBContext: DbContext
     {
+
+        public VehicleRequisitionDBContext()  : base("name=DefaultConnection")
+        {
+            //
+        }
+
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }

@@ -9,6 +9,10 @@ namespace VehicleRequisitionSystem.Models.EntityModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        
+        public DateTime CheckInTime { get; set; }
+        public DateTime DepartureTime { get; set; }
+        public string Status { get; set; }
+
+        public List<AssignedRequisition> AssignedRequisitions { get; set; }
     }
 }

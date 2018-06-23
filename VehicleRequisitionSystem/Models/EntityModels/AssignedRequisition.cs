@@ -7,5 +7,20 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 {
     public class AssignedRequisition
     {
+        public int Id { get; set; }
+        public string Status { get; set; }
+
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+
+        public int RequisitionRequestId { get; set; }
+        public RequisitionRequest RequisitionRequest { get; set; }
+
+        public int DriverId { get; set; }
+        public Driver Driver { get; set; }
+
+        public int VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
+
     }
 }
