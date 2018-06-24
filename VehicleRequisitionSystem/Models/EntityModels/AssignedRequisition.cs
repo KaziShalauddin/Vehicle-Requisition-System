@@ -22,5 +22,9 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
+        public bool IsDeleted { get; set; }
+
+        public List<RequisitionRequest> RequisitionRequests { get; set; }
+
     }
 }

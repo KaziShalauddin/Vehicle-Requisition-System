@@ -11,6 +11,8 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public string Name { get; set; }
         public string Designation { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public List<RequisitionRequest> RequisitionRequests { get; set; } 
     }
 }

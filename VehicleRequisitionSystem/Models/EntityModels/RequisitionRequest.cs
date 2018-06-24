@@ -13,6 +13,8 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public DateTime DepartureTime { get; set; }
         public string Status { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
     }
