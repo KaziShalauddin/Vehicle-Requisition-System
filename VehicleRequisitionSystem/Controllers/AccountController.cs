@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VehicleRequisitionSystem.Models;
@@ -153,6 +154,14 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                //Add role to user
+                var role = new IdentityUserRole();
+                role.UserId = user.Id;
+                // assign User role Id
+                role.RoleId = "648d557d-307b-4a72-9555-5f60070d80c9";
+                user.Roles.Add(role);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

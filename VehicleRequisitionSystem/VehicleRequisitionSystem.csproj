@@ -162,14 +162,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AppEnum.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssignedRequisitionsController.cs" />
+    <Compile Include="Controllers\DriversController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RequisitionRequestsController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,6 +328,31 @@
     <Content Include="Website_Design\less\mixins.less" />
     <Content Include="Website_Design\less\variables.less" />
     <Content Include="Website_Design\mail\contact_me.php" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Drivers\Create.cshtml" />
+    <Content Include="Views\Drivers\Delete.cshtml" />
+    <Content Include="Views\Drivers\Details.cshtml" />
+    <Content Include="Views\Drivers\Edit.cshtml" />
+    <Content Include="Views\Drivers\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\RequisitionRequests\Create.cshtml" />
+    <Content Include="Views\RequisitionRequests\Delete.cshtml" />
+    <Content Include="Views\RequisitionRequests\Details.cshtml" />
+    <Content Include="Views\RequisitionRequests\Edit.cshtml" />
+    <Content Include="Views\RequisitionRequests\Index.cshtml" />
+    <Content Include="Views\AssignedRequisitions\Create.cshtml" />
+    <Content Include="Views\AssignedRequisitions\Delete.cshtml" />
+    <Content Include="Views\AssignedRequisitions\Details.cshtml" />
+    <Content Include="Views\AssignedRequisitions\Edit.cshtml" />
+    <Content Include="Views\AssignedRequisitions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

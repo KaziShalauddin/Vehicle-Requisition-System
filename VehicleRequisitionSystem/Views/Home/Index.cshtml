@@ -1,4 +1,5 @@
-﻿@{
+﻿@using VehicleRequisitionSystem.App_Start
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -53,57 +54,63 @@
                             <hr class="star-primary">
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-sm-4 portfolio-item">
-                            <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                            <a href="@Url.Action("Index", "RequisitionRequests")" class="portfolio-link" data-toggle="modal">
                                 <div class="caption">
                                     <div class="caption-content">
-                                        <i class="fa fa-search-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="~/Website_Design/img/portfolio/cabin.png" class="img-responsive" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-4 portfolio-item">
-                            <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                                <div class="caption">
-                                    <div class="caption-content">
-                                        <i class="fa fa-search-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="~/Website_Design/img/portfolio/cake.png" class="img-responsive" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-4 portfolio-item">
-                            <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                                <div class="caption">
-                                    <div class="caption-content">
-                                        <i class="fa fa-search-plus fa-3x"></i>
-                                    </div>
-                                </div>
-                                <img src="~/Website_Design/img/portfolio/circus.png" class="img-responsive" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-4 portfolio-item">
-                            <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                                <div class="caption">
-                                    <div class="caption-content">
-                                        <i class="fa fa-search-plus fa-3x"></i>
+                                        <i class="fa fa-search-plus fa-2x">Submit Requisition Requests </i>
                                     </div>
                                 </div>
                                 <img src="~/Website_Design/img/portfolio/game.png" class="img-responsive" alt="">
                             </a>
                         </div>
-                        <div class="col-sm-4 portfolio-item">
-                            <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                                <div class="caption">
-                                    <div class="caption-content">
-                                        <i class="fa fa-search-plus fa-3x"></i>
+                        @if (User.IsInRole(AppEnum.RoleEnum.Administrator.ToString()))
+                        {
+                            <div class="col-sm-4 portfolio-item">
+                                <a href="@Url.Action("Index", "Employees")" class="portfolio-link" data-toggle="modal">
+                                    <div class="caption">
+                                        <div class="caption-content">
+                                            <i class="fa fa-search-plus fa-3x"> All Employees</i>
+                                        </div>
                                     </div>
-                                </div>
-                                <img src="~/Website_Design/img/portfolio/safe.png" class="img-responsive" alt="">
-                            </a>
-                        </div>
+                                    <img src="~/Website_Design/img/portfolio/cabin.png" class="img-responsive" alt="">
+                                </a>
+                            </div>
+
+                            <div class="col-sm-4 portfolio-item">
+                                <a href="@Url.Action("Index", "Drivers")" class="portfolio-link" data-toggle="modal">
+                                    <div class="caption">
+                                        <div class="caption-content">
+                                            <i class="fa fa-search-plus fa-3x">Drivers</i>
+                                        </div>
+                                    </div>
+                                    <img src="~/Website_Design/img/portfolio/cake.png" class="img-responsive" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-4 portfolio-item">
+                                <a href="@Url.Action("Index", "Vehicles")" class="portfolio-link" data-toggle="modal">
+                                    <div class="caption">
+                                        <div class="caption-content">
+                                            <i class="fa fa-search-plus fa-3x">Vehicles</i>
+                                        </div>
+                                    </div>
+                                    <img src="~/Website_Design/img/portfolio/circus.png" class="img-responsive" alt="">
+                                </a>
+                            </div>
+
+                            <div class="col-sm-4 portfolio-item">
+                                <a href="@Url.Action("Index", "AssignedRequisitions")" class="portfolio-link" data-toggle="modal">
+                                    <div class="caption">
+                                        <div class="caption-content">
+                                            <i class="fa fa-search-plus fa-2x">Assign Requisition</i>
+                                        </div>
+                                    </div>
+                                    <img src="~/Website_Design/img/portfolio/safe.png" class="img-responsive" alt="">
+                                </a>
+                            </div>
+                        }
                         <div class="col-sm-4 portfolio-item">
                             <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
                                 <div class="caption">
