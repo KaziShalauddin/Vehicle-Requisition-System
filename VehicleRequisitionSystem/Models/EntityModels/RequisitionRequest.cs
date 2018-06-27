@@ -8,6 +8,7 @@ namespace VehicleRequisitionSystem.Models.EntityModels
     public class RequisitionRequest
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
         public string Cause { get; set; }
         public DateTime CheckInTime { get; set; }
         public DateTime DepartureTime { get; set; }
@@ -15,7 +16,7 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         public bool IsDeleted { get; set; }
 
-        public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        //public int EmployeeId { get; set; }
+        //public Employee Employee { get; set; }
     }
 }
