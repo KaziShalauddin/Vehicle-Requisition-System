@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201806240243150_IsDeletedPropertyAdded.Designer.cs">
       <DependentUpon>201806240243150_IsDeletedPropertyAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806270225132_UserId_PropertyAddToEmployee.cs" />
+    <Compile Include="Migrations\201806270225132_UserId_PropertyAddToEmployee.Designer.cs">
+      <DependentUpon>201806270225132_UserId_PropertyAddToEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DBContext\VehicleRequisitionDBContext.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="Models\EntityModels\Vehicle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -328,11 +333,6 @@
     <Content Include="Website_Design\less\mixins.less" />
     <Content Include="Website_Design\less\variables.less" />
     <Content Include="Website_Design\mail\contact_me.php" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Drivers\Create.cshtml" />
     <Content Include="Views\Drivers\Delete.cshtml" />
     <Content Include="Views\Drivers\Details.cshtml" />
@@ -353,6 +353,12 @@
     <Content Include="Views\AssignedRequisitions\Details.cshtml" />
     <Content Include="Views\AssignedRequisitions\Edit.cshtml" />
     <Content Include="Views\AssignedRequisitions\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806240243150_IsDeletedPropertyAdded.resx">
       <DependentUpon>201806240243150_IsDeletedPropertyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806270225132_UserId_PropertyAddToEmployee.resx">
+      <DependentUpon>201806270225132_UserId_PropertyAddToEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

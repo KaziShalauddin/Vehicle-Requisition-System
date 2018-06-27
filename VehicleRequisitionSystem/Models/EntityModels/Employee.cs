@@ -9,6 +9,7 @@ namespace VehicleRequisitionSystem.Models.EntityModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string UserId { get; set; }
         public string Designation { get; set; }
 
         public bool IsDeleted { get; set; }
