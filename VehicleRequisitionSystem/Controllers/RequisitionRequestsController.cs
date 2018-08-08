@@ -15,7 +15,6 @@ using VehicleRequisitionSystem.Models.ViewModels;
 
 namespace VehicleRequisitionSystem.Controllers
 {
-    [Authorize]
     public class RequisitionRequestsController : Controller
     {
         private VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
@@ -23,18 +22,10 @@ namespace VehicleRequisitionSystem.Controllers
         // GET: RequisitionRequests
         public ActionResult Index()
         {
-            //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
-            //var requisitions = db.Requisitions.Include(r => r.Employee);
-            return View(db.Requisitions.ToList());
-        }
-        public ActionResult EmployeeRequisitionsList()
-        {
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-           
-            var requisitions = db.Requisitions.Where(r => r.UserId==user.Id);
+            var requisitions = db.Requisitions.Include(r => r.AssignedRequisition).Include(r => r.Employee).Include(r => r.Status);
             return View(requisitions.ToList());
         }
+
         // GET: RequisitionRequests/Details/5
         public ActionResult Details(int? id)
         {
@@ -42,7 +33,7 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RequisitionRequest requisitionRequest = db.Requisitions.Find(id);
+            RequisitionRequest requisitionRequest = db.Requisitions.Include(r => r.Employee).FirstOrDefault(e => e.Id == id);
             if (requisitionRequest == null)
             {
                 return HttpNotFound();
@@ -53,7 +44,9 @@ namespace VehicleRequisitionSystem.Controllers
         // GET: RequisitionRequests/Create
         public ActionResult Create()
         {
+            ViewBag.AssignedRequisitionId = new SelectList(db.AssignedRequisitions, "Id", "Status");
             ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
+            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Description");
             return View();
         }
 
@@ -62,8 +55,10 @@ namespace VehicleRequisitionSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Cause,CheckInTime,DepartureTime,Status,IsDeleted,EmployeeId")] RequisitionRequest requisitionRequest)
+        public ActionResult Create([Bind(Include = "Id,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,EmployeeId,StatusId")] RequisitionRequest requisitionRequest)
         {
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            requisitionRequest.UserId = user.Id;
             if (ModelState.IsValid)
             {
                 db.Requisitions.Add(requisitionRequest);
@@ -71,8 +66,10 @@ namespace VehicleRequisitionSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-           // ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
-            return View(requisitionRequest);
+            ViewBag.AssignedRequisitionId = new SelectList(db.AssignedRequisitions, "Id", "Status", requisitionRequest.AssignedRequisitionId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
+            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Description", requisitionRequest.StatusId);
+            return View();
         }
 
         // GET: RequisitionRequests/Edit/5
@@ -87,7 +84,9 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
+            ViewBag.AssignedRequisitionId = new SelectList(db.AssignedRequisitions, "Id", "Status", requisitionRequest.AssignedRequisitionId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
+            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Description", requisitionRequest.StatusId);
             return View(requisitionRequest);
         }
 
@@ -96,7 +95,7 @@ namespace VehicleRequisitionSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Cause,CheckInTime,DepartureTime,Status,IsDeleted,EmployeeId")] RequisitionRequest requisitionRequest)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,IsDeleted,EmployeeId,StatusId,AssignedRequisitionId")] RequisitionRequest requisitionRequest)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +103,9 @@ namespace VehicleRequisitionSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
+            ViewBag.AssignedRequisitionId = new SelectList(db.AssignedRequisitions, "Id", "Status", requisitionRequest.AssignedRequisitionId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", requisitionRequest.EmployeeId);
+            ViewBag.StatusId = new SelectList(db.Statuses, "Id", "Description", requisitionRequest.StatusId);
             return View(requisitionRequest);
         }
 
@@ -141,40 +142,6 @@ namespace VehicleRequisitionSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        // GET: RequisitionRequests/Create
-        public ActionResult CreateRequisitionRequest()
-        {
-            //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
-            return View();
-        }
-
-        // POST: RequisitionRequests/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateRequisitionRequest(EmployeeRequisitionRequestVM requisitionRequest)
-        {
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-
-            if (ModelState.IsValid)
-            {
-                RequisitionRequest request=new RequisitionRequest();
-                request.UserId = user.Id;
-                request.Cause = requisitionRequest.Cause;
-                request.DepartureTime = requisitionRequest.DepartureTime;
-                request.CheckInTime = requisitionRequest.CheckInTime;
-                request.Status = requisitionRequest.Status;
-                //request.EmployeeId = db.Employees.Where(r => r.UserId == user.Id).Select(r =>r.Id).FirstOrDefault();
-                db.Requisitions.Add(request);
-                db.SaveChanges();
-                return RedirectToAction("EmployeeRequisitionsList");
-            }
-
-           
-            return View(requisitionRequest);
         }
     }
 }

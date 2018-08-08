@@ -15,6 +15,7 @@ namespace VehicleRequisitionSystem.Controllers
     {
         private VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
 
+
         // GET: AssignedRequisitions
         public ActionResult Index()
         {
@@ -80,6 +81,18 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return HttpNotFound();
             }
+            List<Status> sList = new List<Status>();
+            //Status status=new Status();
+            //status.Id = 1;
+            //status.Description = "Waiting";
+            //sList.Add(status);
+            sList.AddRange(
+                new[] {
+                new Status { Description = "Waiting", Id = 1 },
+                new Status { Description = "Assigned", Id = 2 },
+                new Status { Description = "Not Assigned", Id = 3 }
+                });
+            ViewBag.Status = new SelectList(sList, "Id", "Description", assignedRequisition.Status); 
             ViewBag.DriverId = new SelectList(db.Drivers, "Id", "Name", assignedRequisition.DriverId);
             ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", assignedRequisition.EmployeeId);
             ViewBag.RequisitionRequestId = new SelectList(db.Requisitions, "Id", "Cause", assignedRequisition.RequisitionRequestId);
@@ -100,6 +113,18 @@ namespace VehicleRequisitionSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            List<Status> sList = new List<Status>();
+            //Status status=new Status();
+            //status.Id = 1;
+            //status.Description = "Waiting";
+            //sList.Add(status);
+            sList.AddRange(
+                new[] {
+                new Status { Description = "Waiting", Id = 1 },
+                new Status { Description = "Assigned", Id = 2 },
+                new Status { Description = "Not Assigned", Id = 3 }
+                });
+            ViewBag.Status = new SelectList(sList, "Id", "Description", assignedRequisition.Status);
             ViewBag.DriverId = new SelectList(db.Drivers, "Id", "Name", assignedRequisition.DriverId);
             ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", assignedRequisition.EmployeeId);
             ViewBag.RequisitionRequestId = new SelectList(db.Requisitions, "Id", "Cause", assignedRequisition.RequisitionRequestId);
@@ -142,4 +167,16 @@ namespace VehicleRequisitionSystem.Controllers
             base.Dispose(disposing);
         }
     }
+
+    public class Status
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+
+        public void Add(int i)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

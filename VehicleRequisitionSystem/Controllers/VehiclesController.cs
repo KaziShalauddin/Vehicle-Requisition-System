@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using VehicleRequisitionSystem.BLL;
 using VehicleRequisitionSystem.Models.DBContext;
 using VehicleRequisitionSystem.Models.EntityModels;
 
@@ -13,12 +14,12 @@ namespace VehicleRequisitionSystem.Controllers
 {
     public class VehiclesController : Controller
     {
-        private VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
-
+        // private VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
+        VehicleManager _vehicleManager = new VehicleManager();
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            return View(_vehicleManager.GetAll());
         }
 
         // GET: Vehicles/Details/5
@@ -28,7 +29,8 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+            //Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = _vehicleManager.GetById((int)id);
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -47,12 +49,14 @@ namespace VehicleRequisitionSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Capacity,CheckInTime,DepartureTime,Status,IsDeleted")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "Id,BrandName,Model,RegistrationNo,ChesisNo,Capacity")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                db.Vehicles.Add(vehicle);
-                db.SaveChanges();
+                //db.Vehicles.Add(vehicle);
+                //db.SaveChanges();
+
+                _vehicleManager.Add(vehicle);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +70,9 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+           // Vehicle vehicle = db.Vehicles.Find(id);
+
+            Vehicle vehicle = _vehicleManager.GetById((int)id);
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -79,12 +85,14 @@ namespace VehicleRequisitionSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Capacity,CheckInTime,DepartureTime,Status,IsDeleted")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "Id,BrandName,Model,RegistrationNo,ChesisNo,Capacity,Status,IsDeleted")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vehicle).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(vehicle).State = EntityState.Modified;
+                //db.SaveChanges();
+
+                _vehicleManager.Update(vehicle);
                 return RedirectToAction("Index");
             }
             return View(vehicle);
@@ -97,7 +105,9 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+            //Vehicle vehicle = db.Vehicles.Find(id);
+
+            Vehicle vehicle = _vehicleManager.GetById((int)id);
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -110,9 +120,17 @@ namespace VehicleRequisitionSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vehicle vehicle = db.Vehicles.Find(id);
-            db.Vehicles.Remove(vehicle);
-            db.SaveChanges();
+            //Vehicle vehicle = db.Vehicles.Find(id);
+            //if (vehicle == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //vehicle.IsDeleted = true;
+            //db.Entry(vehicle).State = EntityState.Modified;
+            //db.SaveChanges();
+
+            Vehicle vehicle = _vehicleManager.GetById(id);
+            _vehicleManager.Remove(vehicle);
             return RedirectToAction("Index");
         }
 
@@ -120,7 +138,7 @@ namespace VehicleRequisitionSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _vehicleManager.Dispose();
             }
             base.Dispose(disposing);
         }

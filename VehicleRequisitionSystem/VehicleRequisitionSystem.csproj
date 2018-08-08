@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssignedRequisitionsController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,17 +180,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806281641289_RequisitionRequest_IsCanceled_Introduce.cs" />
+    <Compile Include="Migrations\201806281641289_RequisitionRequest_IsCanceled_Introduce.Designer.cs">
+      <DependentUpon>201806281641289_RequisitionRequest_IsCanceled_Introduce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806291736363_string_No_to_VehicleTblAdded.cs" />
+    <Compile Include="Migrations\201806291736363_string_No_to_VehicleTblAdded.Designer.cs">
+      <DependentUpon>201806291736363_string_No_to_VehicleTblAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806300822343_RequisitionRequestTable_Modified.cs" />
+    <Compile Include="Migrations\201806300822343_RequisitionRequestTable_Modified.Designer.cs">
+      <DependentUpon>201806300822343_RequisitionRequestTable_Modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807011846244_Designation_Status_TablesAdded.cs" />
+    <Compile Include="Migrations\201807011846244_Designation_Status_TablesAdded.Designer.cs">
+      <DependentUpon>201807011846244_Designation_Status_TablesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808061802181_tblDepartment_Added_And_tblEmployee_tblRequisition_Modified.cs" />
+    <Compile Include="Migrations\201808061802181_tblDepartment_Added_And_tblEmployee_tblRequisition_Modified.Designer.cs">
+      <DependentUpon>201808061802181_tblDepartment_Added_And_tblEmployee_tblRequisition_Modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808070711399_tblDepartment_Modified.cs" />
+    <Compile Include="Migrations\201808070711399_tblDepartment_Modified.Designer.cs">
+      <DependentUpon>201808070711399_tblDepartment_Modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808071738480_tblVehicle_Modified.cs" />
+    <Compile Include="Migrations\201808071738480_tblVehicle_Modified.Designer.cs">
+      <DependentUpon>201808071738480_tblVehicle_Modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DBContext\VehicleRequisitionDBContext.cs" />
-    <Compile Include="Models\EntityModels\AssignedRequisition.cs" />
-    <Compile Include="Models\EntityModels\Driver.cs" />
-    <Compile Include="Models\EntityModels\Employee.cs" />
-    <Compile Include="Models\EntityModels\RequisitionRequest.cs" />
-    <Compile Include="Models\EntityModels\Vehicle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ViewModels\EmployeeRegisterVM.cs" />
-    <Compile Include="Models\ViewModels\EmployeeRequisitionRequestVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -326,29 +348,29 @@
     <Content Include="Views\Drivers\Details.cshtml" />
     <Content Include="Views\Drivers\Edit.cshtml" />
     <Content Include="Views\Drivers\Index.cshtml" />
-    <Content Include="Views\Vehicles\Create.cshtml" />
-    <Content Include="Views\Vehicles\Delete.cshtml" />
-    <Content Include="Views\Vehicles\Details.cshtml" />
-    <Content Include="Views\Vehicles\Edit.cshtml" />
-    <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\AssignedRequisitions\Create.cshtml" />
     <Content Include="Views\AssignedRequisitions\Delete.cshtml" />
     <Content Include="Views\AssignedRequisitions\Details.cshtml" />
     <Content Include="Views\AssignedRequisitions\Edit.cshtml" />
     <Content Include="Views\AssignedRequisitions\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Employees\Register.cshtml" />
-    <Content Include="Views\RequisitionRequests\Create.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\RequisitionRequests\Delete.cshtml" />
     <Content Include="Views\RequisitionRequests\Details.cshtml" />
     <Content Include="Views\RequisitionRequests\Edit.cshtml" />
-    <Content Include="Views\RequisitionRequests\EmployeeRequisitionsList.cshtml" />
     <Content Include="Views\RequisitionRequests\Index.cshtml" />
-    <Content Include="Views\RequisitionRequests\CreateRequisitionRequest.cshtml" />
+    <Content Include="Views\RequisitionRequests\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,6 +382,39 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806281641289_RequisitionRequest_IsCanceled_Introduce.resx">
+      <DependentUpon>201806281641289_RequisitionRequest_IsCanceled_Introduce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806291736363_string_No_to_VehicleTblAdded.resx">
+      <DependentUpon>201806291736363_string_No_to_VehicleTblAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806300822343_RequisitionRequestTable_Modified.resx">
+      <DependentUpon>201806300822343_RequisitionRequestTable_Modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807011846244_Designation_Status_TablesAdded.resx">
+      <DependentUpon>201807011846244_Designation_Status_TablesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808061802181_tblDepartment_Added_And_tblEmployee_tblRequisition_Modified.resx">
+      <DependentUpon>201808061802181_tblDepartment_Added_And_tblEmployee_tblRequisition_Modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808070711399_tblDepartment_Modified.resx">
+      <DependentUpon>201808070711399_tblDepartment_Modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808071738480_tblVehicle_Modified.resx">
+      <DependentUpon>201808071738480_tblVehicle_Modified.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleRequisitionSystem.BLL\VehicleRequisitionSystem.BLL.csproj">
+      <Project>{40d4e002-6c6e-4e73-8edb-82c073be6b70}</Project>
+      <Name>VehicleRequisitionSystem.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleRequisitionSystem.Models\VehicleRequisitionSystem.Models.csproj">
+      <Project>{40b19536-55ab-437e-a3a5-13d15d6c9140}</Project>
+      <Name>VehicleRequisitionSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,6 +11,14 @@
     <h4>RequisitionRequest</h4>
     <hr />
     <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.AssignedRequisition.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedRequisition.Status)
+        </dd>*@
+
         <dt>
             @Html.DisplayNameFor(model => model.Employee.Name)
         </dt>
@@ -19,20 +27,44 @@
             @Html.DisplayFor(model => model.Employee.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cause)
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Status.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cause)
+            @Html.DisplayFor(model => model.Status.Description)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CheckInTime)
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persons)
         </dd>
 
         <dt>
@@ -44,20 +76,28 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.CheckInTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.CheckInTime)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.IsCanceled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCanceled)
+        </dd>
+
+        @*<dt>
             @Html.DisplayNameFor(model => model.IsDeleted)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>

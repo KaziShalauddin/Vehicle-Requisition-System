@@ -11,10 +11,11 @@ namespace VehicleRequisitionSystem.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "VehicleRequisitionSystem.Models.DBContext.VehicleRequisitionDBContext";
         }
 
-        protected override void Seed(VehicleRequisitionDBContext context)
+        protected override void Seed(VehicleRequisitionSystem.Models.DBContext.VehicleRequisitionDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 
