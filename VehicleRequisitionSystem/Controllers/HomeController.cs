@@ -26,5 +26,9 @@ namespace VehicleRequisitionSystem.Controllers
 
             return View();
         }
+        public ActionResult DashBoard()
+        {
+            return View();
+        }
     }
 }

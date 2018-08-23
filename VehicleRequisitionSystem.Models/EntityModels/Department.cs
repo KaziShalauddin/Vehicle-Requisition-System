@@ -15,7 +15,10 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         public bool IsDeleted { get; set; }
 
-        public List<Employee> employees { get; set; }
+        public int OrganizationId { get; set; }
+        public Organization Organization { get; set; }
+
+        public List<Employee> Employees { get; set; }
 
     }
 }
