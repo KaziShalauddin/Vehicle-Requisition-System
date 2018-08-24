@@ -75,7 +75,6 @@
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
-    <Compile Include="ViewModels\HttpPostedFileBase.cs" />
     <Compile Include="ViewModels\RequisitionEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
