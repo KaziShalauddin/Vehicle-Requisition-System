@@ -61,17 +61,35 @@
     <Compile Include="EntityModels\RequisitionRequest.cs" />
     <Compile Include="EntityModels\Status.cs" />
     <Compile Include="EntityModels\Vehicle.cs" />
+    <Compile Include="Migrations\201808231631192_InitialMigration.cs" />
+    <Compile Include="Migrations\201808231631192_InitialMigration.Designer.cs">
+      <DependentUpon>201808231631192_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808241712484_Image_PropertyAdded_to_tblEmployee.cs" />
+    <Compile Include="Migrations\201808241712484_Image_PropertyAdded_to_tblEmployee.Designer.cs">
+      <DependentUpon>201808241712484_Image_PropertyAdded_to_tblEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
+    <Compile Include="ViewModels\HttpPostedFileBase.cs" />
     <Compile Include="ViewModels\RequisitionEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808231631192_InitialMigration.resx">
+      <DependentUpon>201808231631192_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808241712484_Image_PropertyAdded_to_tblEmployee.resx">
+      <DependentUpon>201808241712484_Image_PropertyAdded_to_tblEmployee.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
