@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201808241712484_Image_PropertyAdded_to_tblEmployee.Designer.cs">
       <DependentUpon>201808241712484_Image_PropertyAdded_to_tblEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808271741506_tblEmployee_Modified.cs" />
+    <Compile Include="Migrations\201808271741506_tblEmployee_Modified.Designer.cs">
+      <DependentUpon>201808271741506_tblEmployee_Modified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808241712484_Image_PropertyAdded_to_tblEmployee.resx">
       <DependentUpon>201808241712484_Image_PropertyAdded_to_tblEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808271741506_tblEmployee_Modified.resx">
+      <DependentUpon>201808271741506_tblEmployee_Modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
