@@ -9,21 +9,28 @@ namespace VehicleRequisitionSystem.Models.ViewModels
 {
     public class EmployeeEntryVM
     {
-        public int Id { get; set; }
+
+        [Display(Name = "Employee Name")]
         public string Name { get; set; }
-       
-       
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public byte[]  Image { get; set; }
-        public string Address { get; set; }
-        public string UserId { get; set; }
+
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
 
         public int DesignationId { get; set; }
         public Designation Designation { get; set; }
 
-        public int DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+
+        public byte[] Image { get; set; }
+        public string ImagePath { get; set; }
+
+        public bool IsDriver { get; set; }
+        [Display(Name = "Driving License No.")]
+        public string DrivingLicenseNo { get; set; }
+
+        public string UserId { get; set; }
 
     }
 }
