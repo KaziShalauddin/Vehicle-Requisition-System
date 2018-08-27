@@ -33,13 +33,13 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employee = db.Employees.Include(e=>e.Department).FirstOrDefault(e => e.Id==id);
+            var employee = db.Employees.Include(e => e.Department).FirstOrDefault(e => e.Id == id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
             return View(employee);
-            
+
         }
 
         // GET: Employees/Create
@@ -57,7 +57,7 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
                 employee.UserId = user.Id;
-              
+
 
                 if (ModelState.IsValid)
                 {
@@ -117,5 +117,6 @@ namespace VehicleRequisitionSystem.Controllers
                 return View();
             }
         }
+       
     }
 }
