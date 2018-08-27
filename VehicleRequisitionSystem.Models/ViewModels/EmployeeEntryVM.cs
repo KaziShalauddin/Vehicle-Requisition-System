@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web;
 using VehicleRequisitionSystem.Models.EntityModels;
 
@@ -23,7 +20,7 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         public string Email { get; set; }
         public string Address { get; set; }
 
-        public byte[] Image { get; set; }
+        public HttpPostedFileWrapper ImageFile { get; set; }
         public string ImagePath { get; set; }
 
         public bool IsDriver { get; set; }
