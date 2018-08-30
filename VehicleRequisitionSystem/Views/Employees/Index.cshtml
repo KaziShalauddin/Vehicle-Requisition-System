@@ -33,6 +33,9 @@
             @Html.DisplayNameFor(model => model.Designation)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Phone)
         </th>
         <th>
@@ -60,7 +63,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Designation)
+                @Html.DisplayFor(modelItem => item.Designation.Name)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImagePath)" style="height: 50px; width: 100px;" class="img-thumbnail"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)

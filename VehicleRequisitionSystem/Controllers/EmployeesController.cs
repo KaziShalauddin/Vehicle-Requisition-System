@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,7 +23,7 @@ namespace VehicleRequisitionSystem.Controllers
         public ActionResult Index()
         {
 
-            var employees = db.Employees.Include(e => e.Department);
+            var employees = db.Employees.Include(e => e.Department).Include(e=>e.Designation);
             return View(employees.ToList());
         }
 
@@ -43,37 +44,106 @@ namespace VehicleRequisitionSystem.Controllers
         }
 
         // GET: Employees/Create
+        public ActionResult EmployeeCreate()
+        {
+            ViewBag.Departments = new SelectList(db.Departments.ToList(), "Id", "Name");
+            ViewBag.Designations = new SelectList(db.Designations.ToList(), "Id", "Name");
+            return View();
+        }
+
         public ActionResult Create()
         {
             ViewBag.Departments = new SelectList(db.Departments.ToList(), "Id", "Name");
+            ViewBag.Designations = new SelectList(db.Designations.ToList(), "Id", "Name");
             return View();
         }
 
         // POST: Employees/Create
-        [HttpPost]
-        public ActionResult Create(Employee employee)
+        //[HttpPost]
+        //public ActionResult Create(Employee employee)
+        //{
+        //    try
+        //    {
+        //        ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        //        employee.UserId = user.Id;
+
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Employees.Add(employee);
+        //            db.SaveChanges();
+        //            return RedirectToAction("Index");
+        //        }
+
+        //        return View();
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        public JsonResult EmployeeJsonCreate(EmployeeEntryVM model)
         {
-            try
+            //File Upload & Retrive
+            // var file = model.ImageFile;
+
+            //File SQL Upload & Retrive
+            //VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
+            //int imageId = 0;
+
+            // ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+
+            var file = model.ImageFile;
+
+            byte[] imagebyte = null;
+
+
+            if (file != null)
             {
-                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                employee.UserId = user.Id;
+                //File Upload & Retrive
+                //var fileName = Path.GetFileName(file.FileName);
+                //var extention = Path.GetExtension(file.FileName);
+                //var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
 
 
-                if (ModelState.IsValid)
-                {
-                    db.Employees.Add(employee);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                //File Upload & Retrive(both SQL and non-SQL)
+                file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
 
-                return View();
+                //File SQL Upload & Retrive
+                BinaryReader reader = new BinaryReader(file.InputStream);
+
+                imagebyte = reader.ReadBytes(file.ContentLength);
+
+                Employee img = new Employee();
+                img.DepartmentId = model.DepartmentId;
+                img.DesignationId = model.DesignationId;
+                img.IsDriver = model.IsDriver;
+                img.DrivingLicenseNo = model.DrivingLicenseNo;
+                img.Address = model.Address;
+                img.Email = model.Email;
+                img.Phone = model.Phone;
+                img.UserId = model.UserId;
+                img.Name = model.Name;
+                img.Image = imagebyte;
+                img.ImagePath = "/Images/" + file.FileName;
+                img.IsDeleted = false;
+                db.Employees.Add(img);
+                db.SaveChanges();
+                
+
+
             }
-            catch
-            {
-                return View();
-            }
+
+            //File Upload & Retrive
+            //return Json(file.FileName, JsonRequestBehavior.AllowGet);
+
+            //File SQL Upload & Retrive
+            return Json(JsonRequestBehavior.AllowGet);
         }
 
+        
         // GET: Employees/Edit/5
         public ActionResult Edit(int id)
         {
@@ -117,6 +187,6 @@ namespace VehicleRequisitionSystem.Controllers
                 return View();
             }
         }
-       
+
     }
 }
