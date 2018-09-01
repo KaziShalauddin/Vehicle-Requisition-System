@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 using VehicleRequisitionSystem.Models;
 using VehicleRequisitionSystem.Models.DBContext;
 using VehicleRequisitionSystem.Models.EntityModels;
+using VehicleRequisitionSystem.Models.ViewModel;
 using VehicleRequisitionSystem.Models.ViewModels;
 
 namespace VehicleRequisitionSystem.Controllers
@@ -143,7 +144,58 @@ namespace VehicleRequisitionSystem.Controllers
             return Json(JsonRequestBehavior.AllowGet);
         }
 
-        
+        public ActionResult EmployeeCreate_V2()
+        {
+            ViewBag.Departments = new SelectList(db.Departments.ToList(), "Id", "Name");
+            ViewBag.Designations = new SelectList(db.Designations.ToList(), "Id", "Name");
+            return View();
+        }
+        public JsonResult EmployeeJsonCreate_V2(EmployeeEntryVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user =
+                    System.Web.HttpContext.Current.GetOwinContext()
+                        .GetUserManager<ApplicationUserManager>()
+                        .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+
+                var file = model.ImageFile;
+
+                byte[] imagebyte = null;
+
+
+                if (file != null)
+                {
+
+                    file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
+
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+
+                    imagebyte = reader.ReadBytes(file.ContentLength);
+
+                    Employee img = new Employee();
+                    img.DepartmentId = model.DepartmentId;
+                    img.DesignationId = model.DesignationId;
+                    img.IsDriver = model.IsDriver;
+                    img.DrivingLicenseNo = model.DrivingLicenseNo;
+                    img.Address = model.Address;
+                    img.Email = model.Email;
+                    img.Phone = model.Phone;
+                    img.UserId = user.Id;
+                    img.Name = model.Name;
+                    img.Image = imagebyte;
+                    img.ImagePath = "/Images/" + file.FileName;
+                    img.IsDeleted = false;
+                    db.Employees.Add(img);
+                    db.SaveChanges();
+                }
+
+                return Json(JsonRequestBehavior.AllowGet);
+            }
+            return Json(model, JsonRequestBehavior.DenyGet);
+        }
+
         // GET: Employees/Edit/5
         public ActionResult Edit(int id)
         {

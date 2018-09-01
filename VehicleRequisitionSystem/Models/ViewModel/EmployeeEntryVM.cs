@@ -2,9 +2,9 @@
 using System.Web;
 using VehicleRequisitionSystem.Models.EntityModels;
 
-namespace VehicleRequisitionSystem.Models.ViewModels
+namespace VehicleRequisitionSystem.Models.ViewModel
 {
-    public class EmployeeEntryVM
+    public class EmployeeEntryVm
     {
 
         [Display(Name = "Employee Name")]
@@ -24,12 +24,13 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         public string ImagePath { get; set; }
 
         public bool IsDriver { get; set; }
+        [RequiredIf("IsDriver", true, ErrorMessage = "This field is required!")]
         [Display(Name = "Driving License No.")]
         public string DrivingLicenseNo { get; set; }
 
-        public string UserId { get; set; }
+      
 
-       
+        
 
     }
 }
