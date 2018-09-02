@@ -59,6 +59,7 @@
     <Compile Include="EntityModels\Driver.cs" />
     <Compile Include="EntityModels\Employee.cs" />
     <Compile Include="EntityModels\Organization.cs" />
+    <Compile Include="EntityModels\Request.cs" />
     <Compile Include="EntityModels\RequisitionRequest.cs" />
     <Compile Include="EntityModels\Status.cs" />
     <Compile Include="EntityModels\Vehicle.cs" />
@@ -74,12 +75,17 @@
     <Compile Include="Migrations\201808271741506_tblEmployee_Modified.Designer.cs">
       <DependentUpon>201808271741506_tblEmployee_Modified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809021805196_RequestTable_Added.cs" />
+    <Compile Include="Migrations\201809021805196_RequestTable_Added.Designer.cs">
+      <DependentUpon>201809021805196_RequestTable_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
+    <Compile Include="ViewModels\RequestEntryVM.cs" />
     <Compile Include="ViewModels\RequisitionEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808271741506_tblEmployee_Modified.resx">
       <DependentUpon>201808271741506_tblEmployee_Modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809021805196_RequestTable_Added.resx">
+      <DependentUpon>201809021805196_RequestTable_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
