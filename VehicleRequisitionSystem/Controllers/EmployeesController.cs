@@ -93,7 +93,7 @@ namespace VehicleRequisitionSystem.Controllers
             //VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
             //int imageId = 0;
 
-            // ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
 
             var file = model.ImageFile;
@@ -125,7 +125,7 @@ namespace VehicleRequisitionSystem.Controllers
                 img.Address = model.Address;
                 img.Email = model.Email;
                 img.Phone = model.Phone;
-                img.UserId = model.UserId;
+                img.UserId = user.Id;
                 img.Name = model.Name;
                 img.Image = imagebyte;
                 img.ImagePath = "/Images/" + file.FileName;

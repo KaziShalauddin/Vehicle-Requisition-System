@@ -96,27 +96,27 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DrivingLicenseNo, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.DrivingLicenseNo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @if ("IsDriver".IsBool()==false)
+
+                @if ("IsDriver".IsBool() == false)
                 {
-                    @Html.EditorFor(model => model.DrivingLicenseNo, new {htmlAttributes = new {@class = "form-control", required = true}})
-                    
+                    @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control", required = true } })
+
                 }
                 else
                 {
-                    @Html.EditorFor(model => model.DrivingLicenseNo, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control" } })
                 }
 
-                @Html.ValidationMessageFor(model => model.DrivingLicenseNo, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.DrivingLicenseNo, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <p id="messsage" class="col-md-10">
-                 </p>
+            </p>
         </div>
-      
+
         <div class="form-group">
             @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -138,112 +138,114 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+    <script>
 
-<script>
+        $(document).ready(function () {
 
-    $(document).ready(function () {
-        
-        $("#IsDriver").change(function () {
-             
-            //else {
-            //    return true;
-            //    }
+            $("#IsDriver").change(function () {
+
+                //else {
+                //    return true;
+                //    }
             });
-        $("#imageBrowes").change(function () {
+            $("#imageBrowes").change(function () {
 
-            var file = this.files;
+                var file = this.files;
 
-            if (file && file[0]) {
-                ReadImage(file[0]);
-            }
+                if (file && file[0]) {
+                    ReadImage(file[0]);
+                }
 
+            });
         });
-    });
 
-    
-   
 
-    var ReadImage = function (file) {
 
-        var reader = new FileReader;
-        var image = new Image;
 
-        reader.readAsDataURL(file);
-        reader.onload = function (_file) {
+        var ReadImage = function (file) {
 
-            image.src = _file.target.result;
-            image.onload = function () {
+            var reader = new FileReader;
+            var image = new Image;
 
-                var height = this.height;
-                var width = this.width;
-                var type = file.type;
-                var size = ~~(file.size / 1024) + "KB";
+            reader.readAsDataURL(file);
+            reader.onload = function (_file) {
 
-                $("#targetImg").attr('src', _file.target.result);
-                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
-                $("#imgPreview").show();
+                image.src = _file.target.result;
+                image.onload = function () {
 
+                    var height = this.height;
+                    var width = this.width;
+                    var type = file.type;
+                    var size = ~~(file.size / 1024) + "KB";
+
+                    $("#targetImg").attr('src', _file.target.result);
+                    $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    $("#imgPreview").show();
+
+                };
             };
         };
-    };
-    var ClearPreview = function () {
-        $("#imageBrowes").val('');
-        $("#description").text('');
-        $("#imgPreview").hide();
+        var ClearPreview = function () {
+            $("#imageBrowes").val('');
+            $("#description").text('');
+            $("#imgPreview").hide();
 
-    };
+        };
 
-    var Uploadimage = function () {
-        debugger;
-       // var checked = $("#IsDriver").is(":checked");
-       //if (checked === true) {
-       //    return false;
-       //}
-       var checked = $("#IsDriver").is(":checked");
-       if (checked === true) {
-           if ($("#DrivingLicenseNo").val().length === 0) {
-               return false;
-           }
-           //else {
-           //    return true;
-           //}
-
-       }
-        var file = $("#imageBrowes").get(0).files;
-
-        var data = new FormData();
-        data.append("ImageFile", file[0]);
-        //data.append("ProductName", "SamsungA8");
-        data.append("Name", $("#Name").val());
-        data.append("DepartmentId", $("#DepartmentId").val());
-        data.append("DesignationId", $("#DesignationId").val());
-        data.append("Phone", $("#Phone").val());
-        data.append("Email", $("#Email").val());
-        data.append("Address", $("#Address").val());
-        data.append("IsDriver", checked);
-        data.append("DrivingLicenseNo", $("#DrivingLicenseNo").val());
-        data.append("UserId", $("#UserId").val());
-
-       
-        $.ajax({
-
-            type: "Post",
-            url: "/Employees/EmployeeJsonCreate",
-            data: data,
-            contentType: false,
-            processData: false,
-            success: function () {
-                ClearPreview();
-                window.location.href = '@Url.Action("Index", "Employees")';
+        var Uploadimage = function () {
+            debugger;
+            // var checked = $("#IsDriver").is(":checked");
+            //if (checked === true) {
+            //    return false;
+            //}
+            var checked = $("#IsDriver").is(":checked");
+            if (checked === true) {
+                if ($("#DrivingLicenseNo").val().length === 0) {
+                    return false;
+                }
+                //else {
+                //    return true;
+                //}
 
             }
+            var file = $("#imageBrowes").get(0).files;
 
-        });
-        return false;
-    };
-</script>
+            var data = new FormData();
+            data.append("ImageFile", file[0]);
+            //data.append("ProductName", "SamsungA8");
+            data.append("Name", $("#Name").val());
+            data.append("DepartmentId", $("#DepartmentId").val());
+            data.append("DesignationId", $("#DesignationId").val());
+            data.append("Phone", $("#Phone").val());
+            data.append("Email", $("#Email").val());
+            data.append("Address", $("#Address").val());
+            data.append("IsDriver", checked);
+            data.append("DrivingLicenseNo", $("#DrivingLicenseNo").val());
+            data.append("UserId", $("#UserId").val());
+
+
+            $.ajax({
+
+                type: "Post",
+                url: "/Employees/EmployeeJsonCreate",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function () {
+                    ClearPreview();
+                    window.location.href = '@Url.Action("Index", "Employees")';
+
+                }
+
+            });
+            return false;
+        };
+    </script>
+}
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+
