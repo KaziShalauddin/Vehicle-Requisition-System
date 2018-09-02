@@ -27,9 +27,5 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         [Display(Name = "Driving License No.")]
         public string DrivingLicenseNo { get; set; }
 
-        public string UserId { get; set; }
-
-       
-
     }
 }

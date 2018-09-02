@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EmployeeCreate</h2>
+<h2>Create Employee</h2>
 
 
 @using (Html.BeginForm())
@@ -15,132 +15,162 @@
     @*@Html.AntiForgeryToken()*@
 
     <div class="form-horizontal">
-        <h4>EmployeeEntryVm</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div id="tabs" class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabs-1">Personal Information</a></li>
+                <li><a href="#tabs-2">Official Information</a></li>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            </ul>
+            <br />
+            <br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DesignationId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DesignationId, ViewBag.Designations as SelectList, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div id="tabs-1">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="btn btn-primary ">
-                <div class="col-md-10">
-                    <input type="file" id="imageBrowes" />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <hr />
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Photo", htmlAttributes: new {@class = "control-label col-md-2"})
+                        <div class="btn btn-primary ">
+                            <div class="col-md-10">
+                                <input type="file" id="imageBrowes"/>
+                            </div>
+                        </div>
 
-            <div id="imgPreview" class="thumbnail" style="display: none">
-                <img class="img-responsive" id="targetImg" />
-                <div class="caption">
-                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                    <span id="description"></span>
+
+                        <div id="imgPreview" class="thumbnail" style="display: none">
+                            <img class="img-responsive" id="targetImg" style="height: 300px; width: 300px"/>
+                            <div class="caption">
+                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                <span id="description"></span>
+                            </div>
+                            @*<a href="#" class="btn btn-default" onclick="Uploadimage()">Upload</a>*@
+                        </div>
+                    </div>
+
                 </div>
-                @*<a href="#" class="btn btn-default" onclick="Uploadimage()">Upload</a>*@
+                
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDriver, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDriver)
-                    @* @Html.HiddenFor(m => m.IsDriver)*@
-                    @Html.ValidationMessageFor(model => model.IsDriver, "", new { @class = "text-danger" })
+            <div id="tabs-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DrivingLicenseNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DesignationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.DesignationId, ViewBag.Designations as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsDriver, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsDriver)
+                            @* @Html.HiddenFor(m => m.IsDriver)*@
+                            @Html.ValidationMessageFor(model => model.IsDriver, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
 
-                @if ("IsDriver".IsBool() == false)
-                {
-                    @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control", required = true } })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DrivingLicenseNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
 
-                }
-                else
-                {
-                    @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control" } })
-                }
+                        @if ("IsDriver".IsBool() == false)
+                        {
+                            @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control", required = true } })
 
-                @Html.ValidationMessageFor(model => model.DrivingLicenseNo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <p id="messsage" class="col-md-10">
-            </p>
-        </div>
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.DrivingLicenseNo, new { htmlAttributes = new { @class = "form-control" } })
+                        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.DrivingLicenseNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                        <p id="messsage" class="col-md-10">
+                        </p>
+                    </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" onclick="Uploadimage()" />
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success" onclick="Uploadimage()" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-md-12">
+    <hr />
+    
+    <button style="float: right">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
 </div>
 
 @section Scripts {
-    @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")*@
-    <script>
+   
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs({
+                //collapsible: true
+            });
+
+        });
+        $(".nav li").on("click", function () {
+            $(".nav li").removeClass("active");
+            $(this).addClass("active");
+        });
+    </script>
+
+    <script type="text/javascript">
 
         $(document).ready(function () {
 

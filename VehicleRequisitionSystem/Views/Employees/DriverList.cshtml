@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int sl = 1;
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EmployeeCreate")
+    @Html.ActionLink("Create New", "Create")
 </p>
 
 <div class="container">
@@ -22,11 +21,8 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered table-striped " id="myTable">
+<table class="table table-striped">
     <tr>
-        <th>
-            @Html.Raw("SL")
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Department.Name)
         </th>
@@ -61,9 +57,6 @@
     {
         <tr class="Search">
             <td>
-                @(sl++)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Department.Name)
             </td>
             <td>
@@ -73,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.Designation.Name)
             </td>
             <td>
-                <img src="@Url.Content(item.ImagePath)" style="height: 50px; width: 100px;" class="img-thumbnail" />
+                <img src="@Url.Content(item.ImagePath)" style="height: 50px; width: 100px;" class="img-thumbnail"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
@@ -92,40 +85,33 @@
                 </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new {id = item.Id}) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) @*|
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})*@
+                @Html.ActionLink("Details", "Details", new {id = item.Id}) @*|
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})*@
             </td>
         </tr>
     }
 
 </table>
-@section scripts{
-    @*<script src="~/Scripts/jquery-1.12.4.min.js"></script>*@
-    <script>
-        $(document).ready(function () {
-            function contains(text_one, text_two) {
-                if (text_one.indexOf(text_two) != -1)
-                    return true;
-                else {
-                    return false;
-                }
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+            else {
+                return false;
             }
-            $('#myTable').DataTable();
-            $("#Search").keyup(function () {
-                var searchText = $("#Search").val().toLowerCase();
-                $(".Search").each(function () {
-                    if (!contains($(this).text().toLowerCase(), searchText)) {
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
+        }
+       
+        $("#Search").keyup(function() {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function() {
+                if (!contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
             });
         });
-    </script>
-    @*<script type="text/javascript">
-        $(document).ready(function () {
-           
-        });
-    </script>*@
-}
+    });
+</script>

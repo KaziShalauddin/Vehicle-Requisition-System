@@ -150,6 +150,7 @@ namespace VehicleRequisitionSystem.Controllers
             ViewBag.Designations = new SelectList(db.Designations.ToList(), "Id", "Name");
             return View();
         }
+
         public JsonResult EmployeeJsonCreate_V2(EmployeeEntryVm model)
         {
             if (ModelState.IsValid)
@@ -196,6 +197,13 @@ namespace VehicleRequisitionSystem.Controllers
             return Json(model, JsonRequestBehavior.DenyGet);
         }
 
+
+        public ActionResult DriverList()
+        {
+
+            var employees = db.Employees.Include(e => e.Department).Include(e => e.Designation).Where(e=>e.IsDriver==true);
+            return View(employees.ToList());
+        }
         // GET: Employees/Edit/5
         public ActionResult Edit(int id)
         {
