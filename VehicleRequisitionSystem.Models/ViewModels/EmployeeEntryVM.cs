@@ -10,9 +10,11 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         [Display(Name = "Employee Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Department")]
         public int? DepartmentId { get; set; }
         public Department Department { get; set; }
 
+        [Display(Name = "Designation")]
         public int DesignationId { get; set; }
         public Designation Designation { get; set; }
 

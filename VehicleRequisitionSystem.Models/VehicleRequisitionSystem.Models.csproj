@@ -79,6 +79,22 @@
     <Compile Include="Migrations\201809021805196_RequestTable_Added.Designer.cs">
       <DependentUpon>201809021805196_RequestTable_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809030316050_EmpId_Added_to_tblEmployee.cs" />
+    <Compile Include="Migrations\201809030316050_EmpId_Added_to_tblEmployee.Designer.cs">
+      <DependentUpon>201809030316050_EmpId_Added_to_tblEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809030349541_tblEmployee_EmployeeId_Modified_to_string.cs" />
+    <Compile Include="Migrations\201809030349541_tblEmployee_EmployeeId_Modified_to_string.Designer.cs">
+      <DependentUpon>201809030349541_tblEmployee_EmployeeId_Modified_to_string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809030421201_tblRequest_AssignedRequisitionId_Removed.cs" />
+    <Compile Include="Migrations\201809030421201_tblRequest_AssignedRequisitionId_Removed.Designer.cs">
+      <DependentUpon>201809030421201_tblRequest_AssignedRequisitionId_Removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs" />
+    <Compile Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.Designer.cs">
+      <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
@@ -86,6 +102,7 @@
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
     <Compile Include="ViewModels\RequestEntryVM.cs" />
+    <Compile Include="ViewModels\RequestListVM.cs" />
     <Compile Include="ViewModels\RequisitionEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +122,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809021805196_RequestTable_Added.resx">
       <DependentUpon>201809021805196_RequestTable_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809030316050_EmpId_Added_to_tblEmployee.resx">
+      <DependentUpon>201809030316050_EmpId_Added_to_tblEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809030349541_tblEmployee_EmployeeId_Modified_to_string.resx">
+      <DependentUpon>201809030349541_tblEmployee_EmployeeId_Modified_to_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809030421201_tblRequest_AssignedRequisitionId_Removed.resx">
+      <DependentUpon>201809030421201_tblRequest_AssignedRequisitionId_Removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.resx">
+      <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

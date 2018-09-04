@@ -8,9 +8,9 @@ using VehicleRequisitionSystem.Models.EntityModels;
 
 namespace VehicleRequisitionSystem.Models.ViewModels
 {
-    public class RequestEntryVM
+   public class RequestListVM
     {
-       
+        public int Id { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
         public int Persons { get; set; }
@@ -22,14 +22,23 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Check In")]
         public DateTime CheckInTime { get; set; }
-        
-        
-        [Display(Name = "Request For Other")]
-        public bool RequestFor { get; set; }
 
-
-        public string EmployeeId { get; set; }
+       [Display(Name = "Employee Id")]
+        public string EmpIdNo { get; set; }
         
+        [Display(Name = "Employee Name")]
+        public string Name { get; set; }
 
+        [Display(Name = "Department")]
+        public string Department { get; set; }
+       
+
+        [Display(Name = "Designation")]
+        public string Designation { get; set; }
+
+        [Display(Name = "Status")]
+        public string Configuration { get; set; }
+
+        public bool IsCanceled { get; set; }
     }
 }

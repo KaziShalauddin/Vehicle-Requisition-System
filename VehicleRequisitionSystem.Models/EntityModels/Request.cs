@@ -31,13 +31,18 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public bool IsDeleted { get; set; }
 
 
-        public int? EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public string EmpIdNo { get; set; }
+        //public Employee Employee { get; set; }
 
         public int? ConfigurationId { get; set; }
         public Configuration Configuration { get; set; }
 
-        public int? AssignedRequisitionId { get; set; }
-        public AssignedRequisition AssignedRequisition { get; set; }
+        public int? EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+        //public int? ConfigurationId { get; set; }
+        //public Configuration Configuration { get; set; }
+
+        //public int? AssignedRequisitionId { get; set; }
+        //public AssignedRequisition AssignedRequisition { get; set; }
     }
 }

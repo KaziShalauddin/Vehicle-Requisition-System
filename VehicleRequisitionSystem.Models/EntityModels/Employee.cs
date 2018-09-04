@@ -30,6 +30,9 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public string DrivingLicenseNo { get; set; }
 
         public string UserId { get; set; }
+
+        [Display(Name = "Employee Id No.")]
+        public string EmpIdNo { get; set; }
         public bool IsDeleted { get; set; }
        
 

@@ -10,7 +10,7 @@ namespace VehicleRequisitionSystem.Models.EntityModels
     public class Configuration
     {
         public int Id { get; set; }
-        [Display(Name = "Status")]
+        [Display(Name = "Configuration Status")]
         public string Name { get; set; }
 
         public int ConfigurationTypeId { get; set; }

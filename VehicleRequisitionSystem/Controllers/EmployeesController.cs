@@ -27,6 +27,34 @@ namespace VehicleRequisitionSystem.Controllers
             var employees = db.Employees.Include(e => e.Department).Include(e=>e.Designation);
             return View(employees.ToList());
         }
+        private string SetEmpIdNo(string departmentName)
+        {
+            if (departmentName == null) throw new ArgumentNullException(nameof(departmentName));
+            var deptName = departmentName.Substring(0, 3);
+            var countId = db.Employees.Count();
+            countId++;
+            if (countId <= 9)
+            {
+
+                string empIdNo = Convert.ToString(deptName+"-000" + countId);
+                return empIdNo;
+            }
+            if (countId <= 99)
+            {
+                string empIdNo = Convert.ToString(deptName + "-00" + countId);
+                return empIdNo;
+            }
+            if (countId <= 999)
+            {
+                string empIdNo = Convert.ToString(deptName + "-0" + countId);
+                return empIdNo;
+            }
+            else
+            {
+                string empIdNo = Convert.ToString(deptName + countId);
+                return empIdNo;
+            }
+        }
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
@@ -95,6 +123,9 @@ namespace VehicleRequisitionSystem.Controllers
 
              ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
+            var departmentName =
+                db.Departments.Where(e => e.Id == model.DepartmentId).Select(e => e.Name).FirstOrDefault();
+           var empId= SetEmpIdNo(departmentName);
 
             var file = model.ImageFile;
 
@@ -120,6 +151,7 @@ namespace VehicleRequisitionSystem.Controllers
                 Employee img = new Employee();
                 img.DepartmentId = model.DepartmentId;
                 img.DesignationId = model.DesignationId;
+                img.EmpIdNo = empId;
                 img.IsDriver = model.IsDriver;
                 img.DrivingLicenseNo = model.DrivingLicenseNo;
                 img.Address = model.Address;
