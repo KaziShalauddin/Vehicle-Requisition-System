@@ -30,15 +30,15 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         public bool IsDeleted { get; set; }
 
-
+        [Display(Name = "Request For")]
         public string EmpIdNo { get; set; }
         //public Employee Employee { get; set; }
 
         public int? ConfigurationId { get; set; }
         public Configuration Configuration { get; set; }
 
-        public int? EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        //public int? EmployeeId { get; set; }
+        //public Employee Employee { get; set; }
         //public int? ConfigurationId { get; set; }
         //public Configuration Configuration { get; set; }
 

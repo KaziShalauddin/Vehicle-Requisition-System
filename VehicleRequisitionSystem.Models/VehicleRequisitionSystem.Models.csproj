@@ -95,6 +95,10 @@
     <Compile Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.Designer.cs">
       <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.cs" />
+    <Compile Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.Designer.cs">
+      <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
@@ -134,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.resx">
       <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.resx">
+      <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

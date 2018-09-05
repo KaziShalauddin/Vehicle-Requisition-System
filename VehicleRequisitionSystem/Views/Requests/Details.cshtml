@@ -1,4 +1,4 @@
-﻿@model VehicleRequisitionSystem.Models.EntityModels.Request
+﻿@model VehicleRequisitionSystem.Models.ViewModels.RequestListVM
 
 @{
     ViewBag.Title = "Details";
@@ -11,29 +11,29 @@
     <h4>Request</h4>
     <hr />
     <dl class="dl-horizontal">
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Configuration.Name)
+            @Html.DisplayNameFor(model => model.EmpIdNo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Configuration.Name)
+            @Html.DisplayFor(model => model.EmpIdNo)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Employee.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Employee.Name)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.UserId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserId)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Description)
@@ -74,6 +74,14 @@
         <dd>
             @Html.DisplayFor(model => model.CheckInTime)
         </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Configuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Configuration)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.IsCanceled)
@@ -82,22 +90,15 @@
         <dd>
             @Html.DisplayFor(model => model.IsCanceled)
         </dd>
-
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.IsDeleted)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
+        </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmpIdNo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmpIdNo)
-        </dd>
+      
 
     </dl>
 </div>

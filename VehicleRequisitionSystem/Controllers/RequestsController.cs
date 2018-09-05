@@ -23,15 +23,16 @@ namespace VehicleRequisitionSystem.Controllers
         // GET: Requests
         public ActionResult Index()
         {
+            GetCompletedRequisitionList();
             List<RequestListVM> rsList = new List<RequestListVM>();
-            var requestList = db.Requests.Include(e=>e.Configuration).ToList();
+            var requestList = db.Requests.Include(e => e.Configuration).ToList();
             foreach (var item in requestList)
             {
-                var employee= db.Employees.Include(e=>e.Department).Include(e=>e.Designation).Where(e => e.EmpIdNo == item.EmpIdNo).ToList();
-                var employeeName= employee.Select(e => e.Name).FirstOrDefault();
+                var employee = db.Employees.Include(e => e.Department).Include(e => e.Designation).Where(e => e.EmpIdNo == item.EmpIdNo).ToList();
+                var employeeName = employee.Select(e => e.Name).FirstOrDefault();
                 var department = employee.Select(e => e.Department.Name).FirstOrDefault();
                 var designation = employee.Select(e => e.Designation.Name).FirstOrDefault();
-               
+
                 RequestListVM rs = new RequestListVM();
                 rs.Id = item.Id;
                 rs.Description = item.Description;
@@ -51,6 +52,38 @@ namespace VehicleRequisitionSystem.Controllers
             return View(rsList);
         }
 
+        private void GetCompletedRequisitionList()
+        {
+            var requestList = db.Requests.Include(e => e.Configuration).ToList();
+            foreach (var item in requestList)
+            {
+                var today = DateTime.Today;
+                if (item.CheckInTime<today){
+
+                    item.ConfigurationId = 8;
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public ActionResult MyRequestList()
+        {
+            var empIdNo = GetPresentUserEmpIdNo();
+            var requests = db.Requests.Include(r => r.Configuration).Where(e => e.EmpIdNo == empIdNo);
+            return View(requests.ToList());
+        }
+
+        private string GetPresentUserEmpIdNo()
+        {
+            ApplicationUser user =
+                System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            var empIdNo = db.Employees.Where(e => e.UserId == user.Id).Select(e => e.EmpIdNo).FirstOrDefault();
+            return empIdNo;
+        }
+
         // GET: Requests/Details/5
         public ActionResult Details(int? id)
         {
@@ -58,14 +91,44 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Request request = db.Requests.Find(id);
-            if (request == null)
+            var model = SetRequestDetails(id);
+
+
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(request);
+            return View(model);
         }
-
+        private RequestListVM SetRequestDetails(int? id)
+        {
+            Request rs = db.Requests.Find(id);
+            var employee =
+                db.Employees.Include(e => e.Department)
+                    .Include(e => e.Designation)
+                    .Where(e => e.EmpIdNo == rs.EmpIdNo)
+                    .ToList();
+            var employeeName = employee.Select(e => e.Name).FirstOrDefault();
+            var department = employee.Select(e => e.Department.Name).FirstOrDefault();
+            var designation = employee.Select(e => e.Designation.Name).FirstOrDefault();
+            var status = db.Configurations.Where(e => e.Id == rs.ConfigurationId).Select(e => e.Name).FirstOrDefault();
+            RequestListVM rsVM = new RequestListVM
+            {
+                Id = rs.Id,
+                Description = rs.Description,
+                Location = rs.Location,
+                Persons = rs.Persons,
+                DepartureTime = rs.DepartureTime,
+                CheckInTime = rs.CheckInTime,
+                EmpIdNo = rs.EmpIdNo,
+                Name = employeeName,
+                Designation = designation,
+                Configuration = status,
+                Department = department,
+                IsCanceled = rs.IsCanceled
+            };
+            return rsVM;
+        }
         // GET: Requests/Create
         public ActionResult Create()
         {
@@ -81,17 +144,25 @@ namespace VehicleRequisitionSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(RequestEntryVM requestEntry)
         {
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            Request request = new Request();
             if (ModelState.IsValid)
             {
+
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                Request request = new Request();
                 request.UserId = user.Id;
                 request.Description = requestEntry.Description;
                 request.Location = requestEntry.Location;
                 request.Persons = requestEntry.Persons;
                 request.DepartureTime = requestEntry.DepartureTime;
                 request.CheckInTime = requestEntry.CheckInTime;
-                request.EmpIdNo = requestEntry.EmployeeId;
+                if (requestEntry.RequestFor)
+                {
+                    request.EmpIdNo = requestEntry.EmployeeId;
+                }
+                else
+                {
+                    request.EmpIdNo = GetPresentUserEmpIdNo();
+                }
                 request.ConfigurationId = 3;
                 db.Requests.Add(request);
                 db.SaveChanges();
@@ -103,6 +174,40 @@ namespace VehicleRequisitionSystem.Controllers
         }
 
         // GET: Requests/Edit/5
+        //Request Edit by Controller
+        public ActionResult ControllerEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Request request = db.Requests.Find(id);
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+            return View(request);
+        }
+
+        // POST: Requests/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ControllerEdit([Bind(Include = "Id,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,EmpIdNo")] Request request)
+        {
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            if (ModelState.IsValid)
+            {
+                request.UserId = user.Id;
+                db.Entry(request).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(request);
+        }
+        //Request Edit by Controller
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,8 +219,6 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ConfigurationId = new SelectList(db.Configurations, "Id", "Name", request.ConfigurationId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", request.EmployeeId);
             return View(request);
         }
 
@@ -124,19 +227,19 @@ namespace VehicleRequisitionSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,IsDeleted,EmpIdNo,ConfigurationId,EmployeeId")] Request request)
+        public ActionResult Edit([Bind(Include = "Id,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled")] Request request)
         {
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
             if (ModelState.IsValid)
             {
+                request.UserId = user.Id;
                 db.Entry(request).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ConfigurationId = new SelectList(db.Configurations, "Id", "Name", request.ConfigurationId);
-            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", request.EmployeeId);
             return View(request);
         }
-
         // GET: Requests/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -158,9 +261,14 @@ namespace VehicleRequisitionSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Request request = db.Requests.Find(id);
-            db.Requests.Remove(request);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (request != null)
+            {
+                request.IsDeleted = true;
+                db.Entry(request).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         protected override void Dispose(bool disposing)
