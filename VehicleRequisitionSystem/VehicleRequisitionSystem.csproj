@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssignedRequestsController.cs" />
     <Compile Include="Controllers\AssignedRequisitionsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DriversController.cs" />
@@ -836,6 +837,11 @@
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\Requests\MyRequestList.cshtml" />
     <Content Include="Views\Requests\ControllerEdit.cshtml" />
+    <Content Include="Views\AssignedRequests\Create.cshtml" />
+    <Content Include="Views\AssignedRequests\Delete.cshtml" />
+    <Content Include="Views\AssignedRequests\Details.cshtml" />
+    <Content Include="Views\AssignedRequests\Edit.cshtml" />
+    <Content Include="Views\AssignedRequests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

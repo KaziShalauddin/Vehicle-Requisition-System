@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\VehicleRequisitionDBContext.cs" />
+    <Compile Include="EntityModels\AssignedRequest.cs" />
     <Compile Include="EntityModels\AssignedRequisition.cs" />
     <Compile Include="EntityModels\Configuration.cs" />
     <Compile Include="EntityModels\ConfigurationType.cs" />
@@ -99,12 +100,21 @@
     <Compile Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.Designer.cs">
       <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809050328010_tblAssignedRequest_Added.cs" />
+    <Compile Include="Migrations\201809050328010_tblAssignedRequest_Added.Designer.cs">
+      <DependentUpon>201809050328010_tblAssignedRequest_Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.cs" />
+    <Compile Include="Migrations\201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.Designer.cs">
+      <DependentUpon>201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
+    <Compile Include="ViewModels\RequestAssignVM.cs" />
     <Compile Include="ViewModels\RequestEntryVM.cs" />
     <Compile Include="ViewModels\RequestListVM.cs" />
     <Compile Include="ViewModels\RequisitionEntryVM.cs" />
@@ -141,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.resx">
       <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809050328010_tblAssignedRequest_Added.resx">
+      <DependentUpon>201809050328010_tblAssignedRequest_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.resx">
+      <DependentUpon>201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

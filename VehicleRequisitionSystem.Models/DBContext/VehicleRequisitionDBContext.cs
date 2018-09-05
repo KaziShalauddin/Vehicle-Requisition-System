@@ -20,6 +20,7 @@ namespace VehicleRequisitionSystem.Models.DBContext
         public DbSet<RequisitionRequest> Requisitions { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<AssignedRequisition> AssignedRequisitions { get; set; }
+        public DbSet<AssignedRequest> AssignedRequests { get; set; }
 
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<ConfigurationType> ConfigurationTypes { get; set; }

@@ -22,7 +22,7 @@ namespace VehicleRequisitionSystem.Controllers
             var assignedRequisitions = db.AssignedRequisitions.Include(a => a.Driver).Include(a => a.Employee).Include(a => a.RequisitionRequest).Include(a => a.Vehicle);
             return View(assignedRequisitions.ToList());
         }
-
+        
         // GET: AssignedRequisitions/Details/5
         public ActionResult Details(int? id)
         {
