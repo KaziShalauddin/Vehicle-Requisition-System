@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequisitionRequestRepositiory.cs" />
+    <Compile Include="RequestRepositiory.cs" />
     <Compile Include="VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -33,9 +33,10 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         [Display(Name = "Employee Id No.")]
         public string EmpIdNo { get; set; }
+
         public bool IsDeleted { get; set; }
        
 
-        public List<RequisitionRequest> RequisitionRequests { get; set; } 
+        public List<Request> Requests { get; set; } 
     }
 }

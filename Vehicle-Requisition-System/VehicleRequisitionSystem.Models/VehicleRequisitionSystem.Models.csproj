@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="DBContext\VehicleRequisitionDBContext.cs" />
     <Compile Include="EntityModels\AssignedRequest.cs" />
-    <Compile Include="EntityModels\AssignedRequisition.cs" />
     <Compile Include="EntityModels\Configuration.cs" />
     <Compile Include="EntityModels\ConfigurationType.cs" />
     <Compile Include="EntityModels\Department.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="EntityModels\Employee.cs" />
     <Compile Include="EntityModels\Organization.cs" />
     <Compile Include="EntityModels\Request.cs" />
-    <Compile Include="EntityModels\RequisitionRequest.cs" />
     <Compile Include="EntityModels\Status.cs" />
     <Compile Include="EntityModels\Vehicle.cs" />
     <Compile Include="Migrations\201808231631192_InitialMigration.cs" />
@@ -92,10 +90,6 @@
     <Compile Include="Migrations\201809030421201_tblRequest_AssignedRequisitionId_Removed.Designer.cs">
       <DependentUpon>201809030421201_tblRequest_AssignedRequisitionId_Removed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs" />
-    <Compile Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.Designer.cs">
-      <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.cs" />
     <Compile Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.Designer.cs">
       <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
@@ -108,6 +102,10 @@
     <Compile Include="Migrations\201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.Designer.cs">
       <DependentUpon>201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.cs" />
+    <Compile Include="Migrations\201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.Designer.cs">
+      <DependentUpon>201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
@@ -117,7 +115,6 @@
     <Compile Include="ViewModels\RequestAssignVM.cs" />
     <Compile Include="ViewModels\RequestEntryVM.cs" />
     <Compile Include="ViewModels\RequestListVM.cs" />
-    <Compile Include="ViewModels\RequisitionEntryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +143,6 @@
     <EmbeddedResource Include="Migrations\201809030421201_tblRequest_AssignedRequisitionId_Removed.resx">
       <DependentUpon>201809030421201_tblRequest_AssignedRequisitionId_Removed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.resx">
-      <DependentUpon>201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809050109369_tblRequest_EmployeeId_Association_Removed.resx">
       <DependentUpon>201809050109369_tblRequest_EmployeeId_Association_Removed.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.resx">
       <DependentUpon>201809050337012_tblAssignedRequest_DriverIdRemoved_EmployeeIdAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.resx">
+      <DependentUpon>201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

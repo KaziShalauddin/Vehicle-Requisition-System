@@ -9,37 +9,37 @@ using VehicleRequisitionSystem.Models.EntityModels;
 
 namespace VehicleRequisitionSystem.Repositories
 {
-    public class RequisitionRequestRepositiory
+    public class RequestRepositiory
     {
         VehicleRequisitionDBContext db = new VehicleRequisitionDBContext();
-        public bool Add(RequisitionRequest request)
+        public bool Add(Request request)
         {
-            db.Requisitions.Add(request);
+            db.Requests.Add(request);
             return db.SaveChanges() > 0;
         }
 
-        public bool Update(RequisitionRequest request)
+        public bool Update(Request request)
         {
-            db.Requisitions.Attach(request);
+            db.Requests.Attach(request);
             db.Entry(request).State = EntityState.Modified;
             return db.SaveChanges() > 0;
         }
 
-        public bool Remove(RequisitionRequest request)
+        public bool Remove(Request request)
         {
             request.IsDeleted = true;
             return Update(request);
 
         }
 
-        public List<RequisitionRequest> GetAll(bool withDeleted = false)
+        public List<Request> GetAll(bool withDeleted = false)
         {
-            return db.Requisitions.Where(c => c.IsDeleted == withDeleted).ToList();
+            return db.Requests.Where(c => c.IsDeleted == withDeleted).ToList();
         }
 
-        public RequisitionRequest GetById(int id)
+        public Request GetById(int id)
         {
-            return db.Requisitions.FirstOrDefault(c => c.Id == id);
+            return db.Requests.FirstOrDefault(c => c.Id == id);
         }
 
         public void Dispose()

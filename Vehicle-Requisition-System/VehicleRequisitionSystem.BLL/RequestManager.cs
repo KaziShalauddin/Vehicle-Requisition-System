@@ -8,10 +8,10 @@ using VehicleRequisitionSystem.Repositories;
 
 namespace VehicleRequisitionSystem.BLL
 {
-    public class RequisitionRequestManager
+    public class RequestManager
     {
-        RequisitionRequestRepositiory repository = new RequisitionRequestRepositiory();
-        public bool Add(RequisitionRequest request)
+        RequestRepositiory repository = new RequestRepositiory();
+        public bool Add(Request request)
         {
             if (string.IsNullOrEmpty(request.Description))
             {
@@ -26,22 +26,22 @@ namespace VehicleRequisitionSystem.BLL
             return repository.Add(request);
         }
 
-        public bool Update(RequisitionRequest request)
+        public bool Update(Request request)
         {
             return repository.Update(request);
         }
 
-        public bool Remove(RequisitionRequest request)
+        public bool Remove(Request request)
         {
             return repository.Remove(request);
         }
 
-        public List<RequisitionRequest> GetAll(bool withDeleted = false)
+        public List<Request> GetAll(bool withDeleted = false)
         {
             return repository.GetAll(withDeleted);
         }
 
-        public RequisitionRequest GetById(int id)
+        public Request GetById(int id)
         {
             return repository.GetById(id);
         }

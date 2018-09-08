@@ -22,6 +22,6 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         public bool IsDeleted { get; set; }
 
-        public List<AssignedRequisition> AssignedRequisitions { get; set; }
+       // public List<AssignedRequisition> AssignedRequisitions { get; set; }
     }
 }

@@ -27,7 +27,6 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         [Display(Name = "Request For Other")]
         public bool RequestFor { get; set; }
 
-
         public string EmployeeId { get; set; }
         
 

@@ -17,9 +17,9 @@ namespace VehicleRequisitionSystem.Models.DBContext
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<RequisitionRequest> Requisitions { get; set; }
+       
         public DbSet<Request> Requests { get; set; }
-        public DbSet<AssignedRequisition> AssignedRequisitions { get; set; }
+        
         public DbSet<AssignedRequest> AssignedRequests { get; set; }
 
         public DbSet<Configuration> Configurations { get; set; }

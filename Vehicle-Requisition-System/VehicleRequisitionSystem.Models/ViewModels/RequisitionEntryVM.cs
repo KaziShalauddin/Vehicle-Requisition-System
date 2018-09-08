@@ -43,7 +43,7 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         public int? StatusId { get; set; }
         public Status Status { get; set; }
 
-        public int? AssignedRequisitionId { get; set; }
-        public AssignedRequisition AssignedRequisition { get; set; }
+        //public int? AssignedRequisitionId { get; set; }
+        //public AssignedRequisition AssignedRequisition { get; set; }
     }
 }
