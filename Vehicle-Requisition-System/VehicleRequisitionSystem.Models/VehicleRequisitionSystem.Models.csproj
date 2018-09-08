@@ -56,12 +56,12 @@
     <Compile Include="EntityModels\ConfigurationType.cs" />
     <Compile Include="EntityModels\Department.cs" />
     <Compile Include="EntityModels\Designation.cs" />
-    <Compile Include="EntityModels\Driver.cs" />
+    <Compile Include="EntityModels\DriverStatus.cs" />
     <Compile Include="EntityModels\Employee.cs" />
     <Compile Include="EntityModels\Organization.cs" />
     <Compile Include="EntityModels\Request.cs" />
-    <Compile Include="EntityModels\Status.cs" />
     <Compile Include="EntityModels\Vehicle.cs" />
+    <Compile Include="EntityModels\VehicleStatus.cs" />
     <Compile Include="Migrations\201808231631192_InitialMigration.cs" />
     <Compile Include="Migrations\201808231631192_InitialMigration.Designer.cs">
       <DependentUpon>201808231631192_InitialMigration.cs</DependentUpon>
@@ -106,8 +106,11 @@
     <Compile Include="Migrations\201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.Designer.cs">
       <DependentUpon>201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809080620460_tblDrivers_And_tblStatus_Deleted.cs" />
+    <Compile Include="Migrations\201809080620460_tblDrivers_And_tblStatus_Deleted.Designer.cs">
+      <DependentUpon>201809080620460_tblDrivers_And_tblStatus_Deleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ViewModels\AdminRequestAssignVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
@@ -154,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.resx">
       <DependentUpon>201809080504175_tblAssignedRequisition_And_tblRequisitionRequest_Deleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809080620460_tblDrivers_And_tblStatus_Deleted.resx">
+      <DependentUpon>201809080620460_tblDrivers_And_tblStatus_Deleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

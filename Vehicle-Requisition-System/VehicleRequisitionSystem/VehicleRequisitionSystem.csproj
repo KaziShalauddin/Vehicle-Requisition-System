@@ -182,7 +182,6 @@
     <Compile Include="Controllers\AssignedRequestsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DesignationsController.cs" />
-    <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -797,11 +796,6 @@
     <Content Include="Scripts\Website_Design\less\mixins.less" />
     <Content Include="Scripts\Website_Design\less\variables.less" />
     <Content Include="Scripts\Website_Design\mail\contact_me.php" />
-    <Content Include="Views\Drivers\Create.cshtml" />
-    <Content Include="Views\Drivers\Delete.cshtml" />
-    <Content Include="Views\Drivers\Details.cshtml" />
-    <Content Include="Views\Drivers\Edit.cshtml" />
-    <Content Include="Views\Drivers\Index.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Departments\Create.cshtml" />

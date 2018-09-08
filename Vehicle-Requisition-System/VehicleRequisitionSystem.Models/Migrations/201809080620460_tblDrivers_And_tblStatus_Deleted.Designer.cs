@@ -7,13 +7,13 @@ namespace VehicleRequisitionSystem.Models.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added : IMigrationMetadata
+    public sealed partial class tblDrivers_And_tblStatus_Deleted : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tblDrivers_And_tblStatus_Deleted));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809030847065_tblRequest_stringEmployeeId_Modified_to_EmpIdNo_And_tblEmployee_Association_Added"; }
+            get { return "201809080620460_tblDrivers_And_tblStatus_Deleted"; }
         }
         
         string IMigrationMetadata.Source

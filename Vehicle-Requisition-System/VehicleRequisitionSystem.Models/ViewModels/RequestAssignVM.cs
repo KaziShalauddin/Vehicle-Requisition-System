@@ -41,5 +41,7 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
+        //public bool IsCanceled { get; set; }
+
     }
 }
