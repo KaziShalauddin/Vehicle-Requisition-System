@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201809080620460_tblDrivers_And_tblStatus_Deleted.Designer.cs">
       <DependentUpon>201809080620460_tblDrivers_And_tblStatus_Deleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs" />
+    <Compile Include="Migrations\201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.Designer.cs">
+      <DependentUpon>201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809080620460_tblDrivers_And_tblStatus_Deleted.resx">
       <DependentUpon>201809080620460_tblDrivers_And_tblStatus_Deleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.resx">
+      <DependentUpon>201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
