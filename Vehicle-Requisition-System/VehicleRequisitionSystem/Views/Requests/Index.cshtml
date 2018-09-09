@@ -113,14 +113,14 @@
 
                 @Html.ActionLink("Edit", "ControllerEdit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @if (item.Configuration != "Assigned"&& item.Configuration != "Completed")
+                @if (item.Configuration != "Assigned"&& item.Configuration != "Completed" && item.IsCanceled != true)
                 {
                     <a href="@Url.Action("Create", "AssignedRequests",new { id = item.Id })" class="elements">
                         <span>Assign |</span>
                     </a>
                 }
                
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
             </td>
         </tr>
     }

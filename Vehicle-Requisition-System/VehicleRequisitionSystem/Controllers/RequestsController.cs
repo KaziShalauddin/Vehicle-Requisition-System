@@ -25,7 +25,7 @@ namespace VehicleRequisitionSystem.Controllers
         {
             GetCompletedRequisitionList();
             List<RequestListVM> rsList = new List<RequestListVM>();
-            var requestList = db.Requests.Include(e => e.Configuration).ToList();
+            var requestList = db.Requests.Include(e => e.Configuration).Where(e=>e.Configuration.Name!="Assigned").ToList();
             foreach (var item in requestList)
             {
                 var employee = db.Employees.Include(e => e.Department).Include(e => e.Designation).Where(e => e.EmpIdNo == item.EmpIdNo).ToList();
@@ -60,7 +60,7 @@ namespace VehicleRequisitionSystem.Controllers
                 var today = DateTime.Today;
                 if (item.CheckInTime<today){
 
-                    item.ConfigurationId = 3;
+                    item.ConfigurationId = db.Configurations.Where(e=>e.Name=="Completed").Select(e=>e.Id).FirstOrDefault();
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
                 }

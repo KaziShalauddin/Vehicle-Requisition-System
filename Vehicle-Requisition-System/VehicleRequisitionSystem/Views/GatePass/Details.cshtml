@@ -1,0 +1,67 @@
+﻿@model VehicleRequisitionSystem.Models.EntityModels.DriverStatus
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DriverStatus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignedRequest.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedRequest.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Configuration.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Configuration.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

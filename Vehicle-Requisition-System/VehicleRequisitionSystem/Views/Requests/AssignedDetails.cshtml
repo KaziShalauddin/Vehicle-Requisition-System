@@ -38,7 +38,13 @@
         <dd>
             @Html.DisplayFor(model => model.Employee.Name)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Phone)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Phone)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Vehicle.BrandName)
         </dt>
@@ -84,5 +90,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "MyRequestList")
 </p>

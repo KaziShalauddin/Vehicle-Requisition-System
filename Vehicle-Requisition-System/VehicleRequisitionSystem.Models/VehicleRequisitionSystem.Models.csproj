@@ -119,6 +119,7 @@
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
+    <Compile Include="ViewModels\GatePassVM.cs" />
     <Compile Include="ViewModels\RequestAssignVM.cs" />
     <Compile Include="ViewModels\RequestEntryVM.cs" />
     <Compile Include="ViewModels\RequestListVM.cs" />

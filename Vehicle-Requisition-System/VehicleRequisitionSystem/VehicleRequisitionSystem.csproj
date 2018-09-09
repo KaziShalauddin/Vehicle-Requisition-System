@@ -182,6 +182,7 @@
     <Compile Include="Controllers\AssignedRequestsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DesignationsController.cs" />
+    <Compile Include="Controllers\GatePassController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -839,6 +840,11 @@
     <Content Include="Views\Employees\DriverDetails.cshtml" />
     <Content Include="Views\Employees\MyProfile.cshtml" />
     <Content Include="Views\Requests\AssignedDetails.cshtml" />
+    <Content Include="Views\GatePass\Generate.cshtml" />
+    <Content Include="Views\GatePass\Delete.cshtml" />
+    <Content Include="Views\GatePass\Details.cshtml" />
+    <Content Include="Views\GatePass\Edit.cshtml" />
+    <Content Include="Views\GatePass\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
