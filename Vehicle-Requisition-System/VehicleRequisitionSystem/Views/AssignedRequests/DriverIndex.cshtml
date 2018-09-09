@@ -8,11 +8,7 @@
 
 <h2>Assigned Request</h2>
 
-<p>
-    <a href="@Url.Action("Index", "Requests")" class="elements">
-        <span>Assign</span>
-    </a>
-</p>
+
 <div class="container">
     <div class="form-group">
         <div class="input-group">
@@ -29,23 +25,25 @@
             @Html.Raw("SL")
         </th>
         <th>
-            @Html.DisplayName("Assigned Id")
+            @Html.DisplayNameFor(model=>model.Id)
         </th>
         <th>
             @Html.DisplayName("Requisition Id")
         </th>
         <th>
-            @Html.DisplayName("Driver Id")
-        </th>
-        <th>
-            @Html.DisplayName("Driver")
+            @Html.DisplayName("Requested By")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Vehicle.RegistrationNo)
         </th>
         <th>
-            @Html.DisplayName("Requested By")
+            @Html.DisplayNameFor(model => model.Request.DepartureTime)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Request.CheckInTime)
+        </th>
+      
+       
 
         <th></th>
     </tr>
@@ -63,22 +61,24 @@
                 @Html.DisplayFor(modelItem => item.Request.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmpIdNo)
+                @Html.DisplayFor(modelItem => item.EmpIdNo)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Name)
-            </td>
-            
             <td>
                 @Html.DisplayFor(modelItem => item.Vehicle.RegistrationNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmpIdNo)
+                @Html.DisplayFor(modelItem => item.Request.DepartureTime)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                @Html.DisplayFor(modelItem => item.Request.CheckInTime)
+            </td>
+            
+            
+           
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new {id = item.Id}) |*@
+                @Html.ActionLink("Details", "AssignedDetails", new {id = item.Id }) 
+                @*@Html.ActionLink("Delete", "Delete", new {id = item.Id})*@
             </td>
         </tr>
     }

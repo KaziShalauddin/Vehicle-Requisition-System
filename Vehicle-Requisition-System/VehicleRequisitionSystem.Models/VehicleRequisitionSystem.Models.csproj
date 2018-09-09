@@ -115,6 +115,7 @@
       <DependentUpon>201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ViewModels\DriverAssignedDetailsVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />

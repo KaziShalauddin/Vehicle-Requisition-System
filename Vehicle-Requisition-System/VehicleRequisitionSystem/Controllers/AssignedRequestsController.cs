@@ -25,7 +25,50 @@ namespace VehicleRequisitionSystem.Controllers
             var assignedRequests = db.AssignedRequests.Include(a => a.Employee).Include(a => a.Request).Include(a => a.Vehicle);
             return View(assignedRequests.ToList());
         }
-
+        public ActionResult DriverIndex()
+        {
+           var empIdNo= GetPresentUserEmpIdNo();
+            var getEmployeeTableId = db.Employees.Where(e => e.EmpIdNo == empIdNo).Select(e => e.Id).FirstOrDefault();
+            var assignedRequests = db.AssignedRequests.Include(a => a.Employee).Include(a => a.Request).Include(a => a.Vehicle).Where(e=>e.EmployeeId== getEmployeeTableId);
+            return View(assignedRequests.ToList());
+        }
+        private string GetPresentUserEmpIdNo()
+        {
+            ApplicationUser user =
+                System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            var empIdNo = db.Employees.Where(e => e.UserId == user.Id).Select(e => e.EmpIdNo).FirstOrDefault();
+            return empIdNo;
+        }
+        public ActionResult AssignedDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AssignedRequest assignedRequest = db.AssignedRequests.Include(e => e.Employee).Include(e => e.Vehicle).FirstOrDefault(e => e.Id == id);
+            if (assignedRequest == null)
+            {
+                return HttpNotFound();
+            }
+            var assigendFor = db.Employees.Include(e=>e.Department).Include(e=>e.Designation).FirstOrDefault(e => e.EmpIdNo == assignedRequest.EmpIdNo);
+            DriverAssignedDetailsVM detailsVm=new DriverAssignedDetailsVM();
+            detailsVm.AssignedId = assignedRequest.Id;
+            detailsVm.EmpIdNo= assignedRequest.EmpIdNo;
+            
+            detailsVm.BrandName = assignedRequest.Vehicle.BrandName;
+            detailsVm.RegistrationNo= assignedRequest.Vehicle.RegistrationNo;
+            if (assigendFor != null)
+            {
+                detailsVm.Name = assigendFor.Name;
+                detailsVm.DepartmentName = assigendFor.Department.Name;
+                detailsVm.DesignationName = assigendFor.Designation.Name;
+                detailsVm.Phone = assigendFor.Phone;
+            }
+              
+            return View(detailsVm);
+        }
         // GET: AssignedRequests/Details/5
         public ActionResult Details(int? id)
         {

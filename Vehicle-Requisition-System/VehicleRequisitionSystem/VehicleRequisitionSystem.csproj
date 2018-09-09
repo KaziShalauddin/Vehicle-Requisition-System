@@ -845,6 +845,8 @@
     <Content Include="Views\GatePass\Details.cshtml" />
     <Content Include="Views\GatePass\Edit.cshtml" />
     <Content Include="Views\GatePass\Index.cshtml" />
+    <Content Include="Views\AssignedRequests\DriverIndex.cshtml" />
+    <Content Include="Views\AssignedRequests\AssignedDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

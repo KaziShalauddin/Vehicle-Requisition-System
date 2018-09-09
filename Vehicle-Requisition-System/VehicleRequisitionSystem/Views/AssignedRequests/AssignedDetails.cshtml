@@ -1,0 +1,93 @@
+﻿@model VehicleRequisitionSystem.Models.ViewModels.DriverAssignedDetailsVM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var assignedFor = ViewBag.AsignedFor;
+}
+
+
+
+<div>
+    <h2>Assigned Details</h2>
+    <hr />
+    <div class="col-md-6">
+        <h4> Assigned Info</h4>
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AssignedId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AssignedId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BrandName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RegistrationNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegistrationNo)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <h4> Assigned For Info</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmpIdNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmpIdNo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DepartmentName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DesignationName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DesignationName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IsDeleted)
+                </dd>*@
+
+        </dl>
+    </div>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "DriverIndex")
+</p>
