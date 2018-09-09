@@ -20,6 +20,7 @@ namespace VehicleRequisitionSystem.Models.DBContext
         public DbSet<VehicleStatus> VehiclesStatuses { get; set; }
        
         public DbSet<Request> Requests { get; set; }
+        public DbSet<Comments> Commentses { get; set; }
         
         public DbSet<AssignedRequest> AssignedRequests { get; set; }
 

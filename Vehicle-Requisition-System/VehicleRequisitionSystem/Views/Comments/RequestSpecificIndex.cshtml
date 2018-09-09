@@ -1,0 +1,66 @@
+﻿@model IEnumerable<VehicleRequisitionSystem.Models.ViewModels.CommentsVM>
+
+@{
+    ViewBag.Title = "Comments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var userId = ViewBag.UserId;
+    var requestId = ViewBag.RequestId;
+}
+@*<link href="~/Content/site.css" rel="stylesheet" />*@
+
+
+
+
+<h3>Comments</h3>
+<br/>
+
+<p style="padding-left: 20px;">
+    @Html.ActionLink("New Comments", "Create", new { id = requestId })
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <br />
+
+        <div class="col-md-12" style="border-radius: 25px; background: lightcyan; padding-right: 0px; padding-left: 0px;">
+            <div style="padding: 10px; border-top-left-radius: 25px; border-top-right-radius: 25px; background: lightgreen; font-size: 15px">
+                <b>@Html.DisplayNameFor(model => model.DateTime):</b>
+                <span> @Html.DisplayFor(model => item.DateTime)</span>
+            </div>
+            <div style="padding: 8px; background: lightblue;">
+                @if (item.UserId == userId)
+                {
+                    <p style="font-size: 15px">
+                        <b>Comments by me.</b>
+                    </p>
+                }
+                else
+                {
+                    <p style="font-size: 15px">
+                        <b>@Html.DisplayNameFor(model => model.EmpIdNo):</b> <span> @Html.DisplayFor(model => item.EmpIdNo)</span>
+                        <b>@Html.DisplayNameFor(model => model.Name):</b> <span> @Html.DisplayFor(model => item.Name)</span>
+                        <b>@Html.DisplayNameFor(model => model.DepartmentName):</b> <span> @Html.DisplayFor(model => item.DepartmentName)</span>
+                        <b>@Html.DisplayNameFor(model => model.DesignationName):</b> <span> @Html.DisplayFor(model => item.DesignationName)</span>
+                    </p>
+                }
+            </div>
+            <p style="background: lightgray; padding: 5px;">
+                <b style="font-size: 20px;">Comments</b>
+            </p>
+            <p style="margin-left: 30px; font-size: 25px;">@Html.DisplayFor(modelItem => item.Description)</p>
+
+
+            <div>
+                @*@Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                    @Html.ActionLink("New Comments", "Create", new { id = item.Id })*@
+            </div>
+
+        </div>
+
+    </div>
+
+
+}
+

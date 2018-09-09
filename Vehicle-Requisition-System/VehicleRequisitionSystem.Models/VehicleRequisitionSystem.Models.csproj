@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DBContext\VehicleRequisitionDBContext.cs" />
     <Compile Include="EntityModels\AssignedRequest.cs" />
+    <Compile Include="EntityModels\Comments.cs" />
     <Compile Include="EntityModels\Configuration.cs" />
     <Compile Include="EntityModels\ConfigurationType.cs" />
     <Compile Include="EntityModels\Department.cs" />
@@ -114,7 +115,20 @@
     <Compile Include="Migrations\201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.Designer.cs">
       <DependentUpon>201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809090756547_tblComments_Added.cs" />
+    <Compile Include="Migrations\201809090756547_tblComments_Added.Designer.cs">
+      <DependentUpon>201809090756547_tblComments_Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809090830200_tblComments_RequestId_Description_Required.cs" />
+    <Compile Include="Migrations\201809090830200_tblComments_RequestId_Description_Required.Designer.cs">
+      <DependentUpon>201809090830200_tblComments_RequestId_Description_Required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809090935324_tblComments_UserId_DateTime_Added.cs" />
+    <Compile Include="Migrations\201809090935324_tblComments_UserId_DateTime_Added.Designer.cs">
+      <DependentUpon>201809090935324_tblComments_UserId_DateTime_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ViewModels\CommentsVM.cs" />
     <Compile Include="ViewModels\DriverAssignedDetailsVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
@@ -169,6 +183,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.resx">
       <DependentUpon>201809080633102_tblDriversStatus_And_tblVehiclesStatus_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809090756547_tblComments_Added.resx">
+      <DependentUpon>201809090756547_tblComments_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809090830200_tblComments_RequestId_Description_Required.resx">
+      <DependentUpon>201809090830200_tblComments_RequestId_Description_Required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809090935324_tblComments_UserId_DateTime_Added.resx">
+      <DependentUpon>201809090935324_tblComments_UserId_DateTime_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
