@@ -172,39 +172,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-
-            //    $("#DepartmentId").change(function() {
-            //        var departmentId = $("#DepartmentId").val();
-            //        var designationId = "#DesignationId";
-            //        getDepartmentAndDesignationBind(departmentId, designationId);
-            //    });
-
-
-            //    function getDepartmentAndDesignationBind(departmentId, designationId) {
-
-            //        var jsonData = { jsonDepartmentId: departmentId };
-            //        $.ajax({
-            //            url: "/Designations/GetByDepartments",
-            //            data: jsonData,
-            //            type: "POST",
-            //            success: function(response) {
-            //                $(designationId).empty();
-
-            //                var options = "<option>Select.....</option>";
-            //                $.each(response,
-            //                    function(key, designation) {
-            //                        options += "<option value='" + designation.Id + "'>" + designation.Name + "</option>";
-            //                    });
-            //                $(designationId).append(options);
-            //            },
-            //            error: function(response) {
-
-            //            }
-            //        });
-            //    }
-
-
-
             $("#DepartmentId").change(function () {
                 var selectedDepartmentId = $("#DepartmentId").val();
                 var jsonData = { departmentId: selectedDepartmentId };
