@@ -34,6 +34,7 @@ namespace VehicleRequisitionSystem.Repositories
 
         public List<Vehicle> GetAll(bool withDeleted = false)
         {
+            
             return db.Vehicles.Where(c => c.IsDeleted == withDeleted).ToList();
         }
 

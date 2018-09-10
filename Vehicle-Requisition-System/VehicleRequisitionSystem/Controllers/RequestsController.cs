@@ -201,18 +201,19 @@ namespace VehicleRequisitionSystem.Controllers
             }
             return View(request);
         }
-
+        //[Bind(Include = "Id,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,EmpIdNo")]
         // POST: Requests/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ControllerEdit([Bind(Include = "Id,Description,Location,Persons,DepartureTime,CheckInTime,IsCanceled,EmpIdNo")] Request request)
+        public ActionResult ControllerEdit(Request request)
         {
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
             if (ModelState.IsValid)
             {
+                //request.ConfigurationId = request.ConfigurationId;
                 request.UserId = user.Id;
                 db.Entry(request).State = EntityState.Modified;
                 db.SaveChanges();

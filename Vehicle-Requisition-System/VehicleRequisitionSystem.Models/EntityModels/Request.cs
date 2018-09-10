@@ -18,11 +18,11 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public string Location { get; set; }
         public int Persons { get; set; }
 
-        [DataType(DataType.Date)]
+      
         [Display(Name = "Departure")]
         public DateTime DepartureTime { get; set; }
 
-        [DataType(DataType.Date)]
+      
         [Display(Name = "Check In")]
         public DateTime CheckInTime { get; set; }
 

@@ -12,12 +12,15 @@
 
 
 <h3>Comments</h3>
-<br/>
+<br />
 @*<p style="padding-left: 20px;">
-    @Html.Partial("_AddComments", new ViewDataDictionary { { "requestId", requestId } })
-</p>*@
+        @Html.Partial("_AddComments", new ViewDataDictionary { { "requestId", requestId } })
+    </p>*@
 <p style="padding-left: 20px;">
     @Html.ActionLink("New Comments", "Create", new { id = requestId })
+    <span style="float: right">
+        @Html.ActionLink("Back to List", "Index", "Requests")
+    </span>
 </p>
 
 @foreach (var item in Model)
