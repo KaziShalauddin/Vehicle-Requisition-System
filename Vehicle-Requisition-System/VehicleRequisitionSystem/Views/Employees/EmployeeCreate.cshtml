@@ -63,16 +63,16 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.Label("Photo", htmlAttributes: new {@class = "control-label col-md-2"})
+                        @Html.Label("Photo", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="btn btn-primary ">
                             <div class="col-md-10">
-                                <input type="file" id="imageBrowes"/>
+                                <input type="file" id="imageBrowes" />
                             </div>
                         </div>
 
 
                         <div id="imgPreview" class="thumbnail" style="display: none">
-                            <img class="img-responsive" id="targetImg" style="height: 300px; width: 300px"/>
+                            <img class="img-responsive" id="targetImg" style="height: 300px; width: 300px" />
                             <div class="caption">
                                 <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
                                 <span id="description"></span>
@@ -82,7 +82,7 @@
                     </div>
 
                 </div>
-                
+
             </div>
             <div id="tabs-2">
                 <div class="form-group">
@@ -148,14 +148,14 @@
 
 <div class="col-md-12">
     <hr />
-    
+
     <button style="float: right">
         @Html.ActionLink("Back to List", "Index")
     </button>
 </div>
 
 @section Scripts {
-   
+
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -171,16 +171,80 @@
     </script>
 
     <script type="text/javascript">
-
         $(document).ready(function () {
 
-            $("#IsDriver").change(function () {
+            //    $("#DepartmentId").change(function() {
+            //        var departmentId = $("#DepartmentId").val();
+            //        var designationId = "#DesignationId";
+            //        getDepartmentAndDesignationBind(departmentId, designationId);
+            //    });
+
+
+            //    function getDepartmentAndDesignationBind(departmentId, designationId) {
+
+            //        var jsonData = { jsonDepartmentId: departmentId };
+            //        $.ajax({
+            //            url: "/Designations/GetByDepartments",
+            //            data: jsonData,
+            //            type: "POST",
+            //            success: function(response) {
+            //                $(designationId).empty();
+
+            //                var options = "<option>Select.....</option>";
+            //                $.each(response,
+            //                    function(key, designation) {
+            //                        options += "<option value='" + designation.Id + "'>" + designation.Name + "</option>";
+            //                    });
+            //                $(designationId).append(options);
+            //            },
+            //            error: function(response) {
+
+            //            }
+            //        });
+            //    }
+
+
+
+            $("#DepartmentId").change(function () {
+                var selectedDepartmentId = $("#DepartmentId").val();
+                var jsonData = { departmentId: selectedDepartmentId };
+
+                $.ajax(
+                    {
+                        url: "/Designations/GetByDepartments",
+                        data: jsonData,
+                        type: "POST",
+                        success: function (response) {
+                            $("#DesignationId").empty();
+                            var options = "<option >Select...</option>";
+                            $.each(response,
+                                function (key, designation) {
+                                    options += "<option value='" + designation.Id + "'>" + designation.Name + "</option>";
+                                });
+
+                            $("#DesignationId").append(options);
+
+                        },
+                        error: function (response) {
+
+                        }
+
+                    });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("#IsDriver").change(function() {
 
                 //else {
                 //    return true;
                 //    }
             });
-            $("#imageBrowes").change(function () {
+            $("#imageBrowes").change(function() {
 
                 var file = this.files;
 
@@ -192,18 +256,16 @@
         });
 
 
-
-
-        var ReadImage = function (file) {
+        var ReadImage = function(file) {
 
             var reader = new FileReader;
             var image = new Image;
 
             reader.readAsDataURL(file);
-            reader.onload = function (_file) {
+            reader.onload = function(_file) {
 
                 image.src = _file.target.result;
-                image.onload = function () {
+                image.onload = function() {
 
                     var height = this.height;
                     var width = this.width;
@@ -217,14 +279,14 @@
                 };
             };
         };
-        var ClearPreview = function () {
+        var ClearPreview = function() {
             $("#imageBrowes").val('');
             $("#description").text('');
             $("#imgPreview").hide();
 
         };
 
-        var Uploadimage = function () {
+        var Uploadimage = function() {
             debugger;
             // var checked = $("#IsDriver").is(":checked");
             //if (checked === true) {
@@ -257,13 +319,12 @@
 
 
             $.ajax({
-
                 type: "Post",
                 url: "/Employees/EmployeeJsonCreate",
                 data: data,
                 contentType: false,
                 processData: false,
-                success: function () {
+                success: function() {
                     ClearPreview();
                     window.location.href = '@Url.Action("Index", "Employees")';
 
@@ -273,6 +334,7 @@
             return false;
         };
     </script>
+
 }
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>

@@ -121,6 +121,19 @@ namespace VehicleRequisitionSystem.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetByDepartments(int? departmentId)
+        {
+            if (departmentId == null)
+            {
+                return null;
+            }
+
+            var designations = db.Designations.Where(c => c.DepartmentId == departmentId).ToList();
+
+            return Json(designations, JsonRequestBehavior.AllowGet);
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

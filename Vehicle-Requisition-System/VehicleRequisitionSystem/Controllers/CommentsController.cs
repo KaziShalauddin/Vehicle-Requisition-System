@@ -68,7 +68,7 @@ namespace VehicleRequisitionSystem.Controllers
             ViewBag.RequestId = id;
             return View(commentsList);
         }
-
+        //Add comments with comments list
         public JsonResult CreateCommentsJson(CommentsWithCreateVm model)
         {
            
@@ -155,7 +155,7 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 db.Commentses.Add(comments);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("RequestSpecificIndex",comments.RequestId);
             }
 
             return View(comments);
