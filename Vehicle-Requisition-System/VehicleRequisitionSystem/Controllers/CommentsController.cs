@@ -25,7 +25,14 @@ namespace VehicleRequisitionSystem.Controllers
             var commentses = db.Commentses.Include(c => c.Request);
             return View(commentses.ToList());
         }
-
+        private static ApplicationUser ApplicationUser()
+        {
+            ApplicationUser user =
+                System.Web.HttpContext.Current.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>()
+                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            return user;
+        }
         public ActionResult RequestSpecificIndex(int? id)
         {
             if (id == null)
@@ -39,8 +46,12 @@ namespace VehicleRequisitionSystem.Controllers
             {
                 var userId = item.UserId;
                 CommentsVM commentsVm = new CommentsVM();
-                var commentsBy = db.Employees.Include(e => e.Department).Include(e => e.Designation).FirstOrDefault(e => e.UserId == userId);
                 commentsVm.UserId = userId;
+                commentsVm.Description = item.Description;
+                commentsVm.DateTime = item.DateTime;
+                commentsVm.RequestId = item.RequestId;
+                var commentsBy = db.Employees.Include(e => e.Department).Include(e => e.Designation).FirstOrDefault(e => e.UserId == userId);
+               
                 if (commentsBy != null)
                 {
                     commentsVm.EmpIdNo = commentsBy.EmpIdNo;
@@ -50,16 +61,59 @@ namespace VehicleRequisitionSystem.Controllers
 
                 }
                 //db.Employees.Where(e => e.UserId == item.UserId).Select(e => e.EmpIdNo).FirstOrDefault();
-                commentsVm.Description = item.Description;
-                commentsVm.DateTime = item.DateTime;
-                commentsVm.RequestId = item.RequestId;
+               
                 commentsList.Add(commentsVm);
             }
             ViewBag.UserId = ApplicationUser().Id;
             ViewBag.RequestId = id;
             return View(commentsList);
         }
-        // GET: Comments/Details/5
+
+        public JsonResult CreateCommentsJson(CommentsWithCreateVm model)
+        {
+           
+            Comments cm=new Comments();
+            cm.UserId = ApplicationUser().Id;
+            cm.Description = model.Description;
+            cm.DateTime = model.DateTime;
+            cm.RequestId = model.RequestId;
+            db.Commentses.Add(cm);
+            db.SaveChanges();
+            var commentses = db.Commentses.Include(c => c.Request).Where(e => e.RequestId == cm.RequestId);
+           model.CommentsVms = new List<CommentsVM>();
+
+            foreach (var item in commentses)
+            {
+                var userId = item.UserId;
+                CommentsVM commentsVm = new CommentsVM();
+                commentsVm.UserId = userId;
+                commentsVm.Description = item.Description;
+                commentsVm.DateTime = item.DateTime;
+                commentsVm.RequestId = item.RequestId;
+                var commentsBy = db.Employees.Include(e => e.Department).Include(e => e.Designation).FirstOrDefault(e => e.UserId == userId);
+
+                if (commentsBy != null)
+                {
+                    commentsVm.EmpIdNo = commentsBy.EmpIdNo;
+                    commentsVm.Name = commentsBy.Name;
+                    commentsVm.DepartmentName = commentsBy.Department.Name;
+                    commentsVm.DesignationName = commentsBy.Designation.Name;
+
+                }
+                //db.Employees.Where(e => e.UserId == item.UserId).Select(e => e.EmpIdNo).FirstOrDefault();
+
+                model.CommentsVms.Add(commentsVm);
+            }
+            //ViewBag.UserId = ApplicationUser().Id;
+            //ViewBag.RequestId = id;
+            // return View(model);
+            
+         return Json(model.CommentsVms, JsonRequestBehavior.AllowGet);
+
+    }
+
+    
+    // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -73,14 +127,7 @@ namespace VehicleRequisitionSystem.Controllers
             }
             return View(comments);
         }
-        private static ApplicationUser ApplicationUser()
-        {
-            ApplicationUser user =
-                System.Web.HttpContext.Current.GetOwinContext()
-                    .GetUserManager<ApplicationUserManager>()
-                    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            return user;
-        }
+        
 
         // GET: Comments/Create
         public ActionResult Create(int? id)

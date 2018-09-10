@@ -22,8 +22,37 @@ namespace VehicleRequisitionSystem.Controllers
         // GET: DriverStatus
         public ActionResult Index()
         {
-            var driversStatuses = db.DriversStatuses.Include(d => d.AssignedRequest).Include(d => d.Configuration).Include(d => d.Employee);
-            return View(driversStatuses.ToList());
+            List<GatePassListVM> gatePass = new List<GatePassListVM>();
+
+            var driversStatuses = db.DriversStatuses.OrderByDescending(e => e.Id).Include(d => d.AssignedRequest).Include(d => d.Configuration).Include(d => d.Employee);
+            var vehicleStatuses = db.VehiclesStatuses.OrderByDescending(e => e.Id).Include(d => d.AssignedRequest).Include(d => d.Configuration).Include(d => d.Employee);
+            var gatePassList = (from driver in driversStatuses
+                                let vehicle = vehicleStatuses.FirstOrDefault(vehicle => vehicle.EmployeeId == driver.EmployeeId)
+
+                                select new
+                                {
+
+                                    driver.Employee.EmpIdNo,
+                                    DriverName = driver.Employee.Name,
+                                    vehicle.Vehicle.BrandName,
+                                    vehicle.Vehicle.RegistrationNo,
+                                    Status = driver.Configuration.Name,
+                                    driver.OnTime
+                                });
+
+            var itemCount = gatePassList.Count();
+            foreach (var item in gatePassList)
+            {
+                GatePassListVM gatePassVm = new GatePassListVM();
+                gatePassVm.EmpIdNo = item.EmpIdNo;
+                gatePassVm.DriverName = item.DriverName;
+                gatePassVm.Brand = item.BrandName;
+                gatePassVm.RegistrationNo = item.RegistrationNo;
+                gatePassVm.Status = item.Status;
+                gatePassVm.OnTime = item.OnTime;
+                gatePass.Add(gatePassVm);
+            }
+            return View(gatePass);
         }
 
         // GET: DriverStatus/Details/5
@@ -45,7 +74,10 @@ namespace VehicleRequisitionSystem.Controllers
         public ActionResult Generate()
         {
             //ViewBag.AssignedRequestId = new SelectList(db.AssignedRequests, "Id", "UserId");
-            ViewBag.ConfigurationId = new SelectList(db.Configurations, "Id", "Name");
+            var status =
+                db.Configurations.Include(e => e.ConfigurationType)
+                    .Where(e => e.ConfigurationType.Type == "DriverStatus");
+            ViewBag.ConfigurationId = new SelectList(status, "Id", "Name");
             //ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
             return View();
         }
@@ -62,18 +94,48 @@ namespace VehicleRequisitionSystem.Controllers
 
             if (ModelState.IsValid)
             {
-                DriverStatus dv=new DriverStatus();
-                //dv.EmployeeId = gatePass.EmpIdNo;
-                VehicleStatus vs= new VehicleStatus();
-                
-                //db.DriversStatuses.Add(driverStatus);
+                var vehicleId = db.Vehicles.Where(e => e.RegistrationNo == gatePass.RegistrationNo).Select(e => e.Id).FirstOrDefault();
+
+
+                DriverStatus dv = new DriverStatus();
+                dv.UserId = user.Id;
+                dv.AssignedRequestId = gatePass.AssignedRequestId;
+                dv.ConfigurationId = gatePass.ConfigurationId;
+                dv.OnTime = DateTime.Now;
+
+                VehicleStatus vs = new VehicleStatus();
+                vs.VehicleId = vehicleId;
+                vs.AssignedRequestId = gatePass.AssignedRequestId;
+                vs.ConfigurationId = gatePass.ConfigurationId;
+                vs.OnTime = DateTime.Now;
+                vs.UserId = user.Id;
+
+                if (gatePass.GatePassBy)
+                {
+                    var driverId = db.Employees.Where(e => e.UserId == dv.UserId).Select(e => e.Id).FirstOrDefault();
+                    dv.EmployeeId = driverId;
+                    vs.EmployeeId = dv.EmployeeId;
+                }
+                else
+                {
+                    var driverId = db.Employees.Where(e => e.EmpIdNo == gatePass.EmpIdNo && e.IsDriver == true).Select(e => e.Id).FirstOrDefault();
+                    dv.EmployeeId = driverId;
+                    vs.EmployeeId = dv.EmployeeId;
+                }
+                db.DriversStatuses.Add(dv);
+                // db.SaveChanges();
+                db.VehiclesStatuses.Add(vs);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             //ViewBag.AssignedRequestId = new SelectList(db.AssignedRequests, "Id", "UserId", driverStatus.AssignedRequestId);
-            ViewBag.ConfigurationId = new SelectList(db.Configurations, "Id", "Name");
-           // ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", driverStatus.EmployeeId);
+            // ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name", driverStatus.EmployeeId);
+            var status =
+                db.Configurations.Include(e => e.ConfigurationType)
+                    .Where(e => e.ConfigurationType.Type == "DriverStatus");
+            ViewBag.ConfigurationId = new SelectList(status, "Id", "Name");
+
             return View();
         }
 

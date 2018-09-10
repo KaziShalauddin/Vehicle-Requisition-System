@@ -127,13 +127,19 @@
     <Compile Include="Migrations\201809090935324_tblComments_UserId_DateTime_Added.Designer.cs">
       <DependentUpon>201809090935324_tblComments_UserId_DateTime_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809091839512_tblVehicleStatus_EmployeeId_Added.cs" />
+    <Compile Include="Migrations\201809091839512_tblVehicleStatus_EmployeeId_Added.Designer.cs">
+      <DependentUpon>201809091839512_tblVehicleStatus_EmployeeId_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\CommentsVM.cs" />
+    <Compile Include="ViewModels\CommentsWithCreateVm.cs" />
     <Compile Include="ViewModels\DriverAssignedDetailsVM.cs" />
     <Compile Include="ViewModels\EmployeeEntryVM.cs" />
     <Compile Include="ViewModels\EmployeeRegisterVM.cs" />
     <Compile Include="ViewModels\EmployeeRequestVM.cs" />
     <Compile Include="ViewModels\EmployeeRequisitionRequestVM.cs" />
+    <Compile Include="ViewModels\GatePassListVM.cs" />
     <Compile Include="ViewModels\GatePassVM.cs" />
     <Compile Include="ViewModels\RequestAssignVM.cs" />
     <Compile Include="ViewModels\RequestEntryVM.cs" />
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809090935324_tblComments_UserId_DateTime_Added.resx">
       <DependentUpon>201809090935324_tblComments_UserId_DateTime_Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809091839512_tblVehicleStatus_EmployeeId_Added.resx">
+      <DependentUpon>201809091839512_tblVehicleStatus_EmployeeId_Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

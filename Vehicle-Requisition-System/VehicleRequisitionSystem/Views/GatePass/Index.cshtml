@@ -1,64 +1,69 @@
-﻿@model IEnumerable<VehicleRequisitionSystem.Models.EntityModels.DriverStatus>
+﻿@model List<VehicleRequisitionSystem.Models.ViewModels.GatePassListVM>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gate Pass";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int sl = 1;
 }
 
-<h2>Index</h2>
+<h3>All Gate Pass</h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Gate Pass", "Generate")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped " id="myTable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AssignedRequest.UserId)
+            @Html.Raw("SL")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Configuration.Name)
+            @Html.DisplayName("Employee Id")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Employee.Name)
+            @Html.DisplayName("Driver Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayName("Vehicle Brand")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OnTime)
+            @Html.DisplayName("Vehicle Registration No")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
+            @Html.DisplayName("Status")
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayName("On Time")
+        </th>
+
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssignedRequest.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Configuration.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OnTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr >
+            <td>
+                @(sl++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpIdNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnTime)
+            </td>
+
+        </tr>
+    }
 
 </table>

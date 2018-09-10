@@ -1,10 +1,10 @@
-﻿@model IEnumerable<VehicleRequisitionSystem.Models.ViewModels.CommentsVM>
+﻿@model VehicleRequisitionSystem.Models.ViewModels.CommentsWithCreateVm
 
 @{
     ViewBag.Title = "Comments";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var userId = ViewBag.UserId;
-    var requestId = ViewBag.RequestId;
+    //var userId = ViewBag.UserId;
+    //var requestId = ViewBag.RequestId;
 }
 @*<link href="~/Content/site.css" rel="stylesheet" />*@
 
@@ -16,11 +16,33 @@
 @*<p style="padding-left: 20px;">
     @Html.Partial("_AddComments", new ViewDataDictionary { { "requestId", requestId } })
 </p>*@
-<p style="padding-left: 20px;">
-    @Html.ActionLink("New Comments", "Create", new { id = requestId })
-</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-@foreach (var item in Model)
+    <div class="form-horizontal">
+        <h4>Comments</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RequestId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@foreach (var item in model.CommentsVms)
 {
     <div class="container">
         <br />

@@ -13,13 +13,20 @@ namespace VehicleRequisitionSystem.Models.ViewModels
         [Display(Name = "Status Changed By")]
         public string UserId { get; set; }
 
+        //if gate pass done by gate man
+        [Display(Name = "Gate Pass By me")]
+        public bool GatePassBy { get; set; }
+
         //public int EmployeeId { get; set; }
         //public Employee Employee { get; set; }
+
         [Display(Name = "Employee Id")]
         public string EmpIdNo { get; set; }
 
-        public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
+        [Required]
+        [Display(Name = "Vehicle Registration No.")]
+        public string RegistrationNo { get; set; }
+        
 
         public int AssignedRequestId { get; set; }
         public AssignedRequest AssignedRequest { get; set; }

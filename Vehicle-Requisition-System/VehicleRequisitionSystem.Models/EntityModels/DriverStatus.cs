@@ -13,7 +13,7 @@ namespace VehicleRequisitionSystem.Models.EntityModels
 
         [Display(Name = "Status Changed By")]
         public string UserId { get; set; }
-
+        [Display(Name = "Driver Id")]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
 

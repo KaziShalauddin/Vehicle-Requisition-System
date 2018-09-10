@@ -17,6 +17,10 @@ namespace VehicleRequisitionSystem.Models.EntityModels
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
+        [Display(Name = "Driver Id")]
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+
         public int AssignedRequestId { get; set; }
         public AssignedRequest AssignedRequest { get; set; }
 

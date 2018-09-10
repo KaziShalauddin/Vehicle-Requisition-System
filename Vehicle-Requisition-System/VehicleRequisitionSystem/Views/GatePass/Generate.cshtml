@@ -1,11 +1,9 @@
-﻿@model VehicleRequisitionSystem.Models.EntityModels.DriverStatus
+﻿@model VehicleRequisitionSystem.Models.ViewModels.GatePassVM
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -13,56 +11,49 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>DriverStatus</h4>
+        <h4>Generate Gate Pass</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
+
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AssignedRequestId, "AssignedRequestId", htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.AssignedRequestId, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.AssignedRequestId, "", new {@class = "text-danger"})
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.AssignedRequestId, "AssignedRequestId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GatePassBy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("AssignedRequestId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AssignedRequestId, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.GatePassBy)
+                    @* @Html.HiddenFor(m => m.IsDriver)*@
+                    @Html.ValidationMessageFor(model => model.GatePassBy, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
+        <div class="form-group" id="EmpIdNo">
+            @Html.LabelFor(model => model.EmpIdNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmpIdNo, new { htmlAttributes = new { @class = "form-control" } })
 
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegistrationNo, "RegistrationNo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegistrationNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ConfigurationId, "ConfigurationId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ConfigurationId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ConfigurationId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OnTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OnTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OnTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDeleted)
-                    @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 
@@ -75,9 +66,26 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("All gate passes", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#GatePassBy").change(function() {
+
+                var checked = $("#GatePassBy").is(":checked");
+                if (checked === true) {
+                    $("#EmpIdNo").hide();
+                } else {
+                    $("#EmpIdNo").show();
+                }
+
+            })
+
+
+        });
+    </script>
 }

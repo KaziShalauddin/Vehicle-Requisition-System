@@ -854,7 +854,7 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Comments\RequestSpecificIndex.cshtml" />
-    <Content Include="Views\Comments\_AddComments.cshtml" />
+    <Content Include="Views\Comments\CommentsWithCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
